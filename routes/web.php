@@ -27,12 +27,13 @@ use App\Http\Controllers\CartController;
 Route::prefix('admin')->group(function () {
 
     //Login
-    Route::get('login', [LoginController::class, 'index'])->name('login');
+
+    Route::get('login', [LoginController::class, 'index'])->name('login')->middleware('checkAdmin');
     Route::post('login',  [LoginController::class, 'store'])->name('login1');
     Route::post('logout', [LoginController::class, 'logOut'])->name('logout1');
 
 
-    Route::middleware('auth')->group(function () {
+    Route::middleware('auth', 'checkPermission')->group(function () {
 
         //Trang admin
         Route::get('/', [MainController::class, 'index'])->name('admin');
