@@ -29,6 +29,7 @@ Route::prefix('admin')->group(function () {
     //Login
     Route::get('login', [LoginController::class, 'index'])->name('login');
     Route::post('login',  [LoginController::class, 'store'])->name('login1');
+    Route::post('logout', [LoginController::class, 'logOut'])->name('logout1');
 
 
     Route::middleware('auth')->group(function () {
@@ -84,7 +85,6 @@ Route::prefix('admin')->group(function () {
 
         Route::get('customers', [\App\Http\Controllers\Admin\CartController::class, 'index'])->name('listCustomer');
         Route::get('customers/view/{customer}', [\App\Http\Controllers\Admin\CartController::class, 'show']);
-
     });
 });
 
@@ -102,5 +102,5 @@ Route::get('san-pham/{id}-{slug}.html', [Product1Controller::class, 'index']);
 Route::post('add-cart', [CartController::class, 'index']);
 Route::get('carts', [CartController::class, 'show']);
 Route::post('update-cart', [CartController::class, 'update']);
-Route::get('carts/delete/{id}', [CartController::class, 'remove']);   
+Route::get('carts/delete/{id}', [CartController::class, 'remove']);
 Route::post('carts', [CartController::class, 'addCart']);

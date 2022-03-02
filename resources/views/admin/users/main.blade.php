@@ -19,7 +19,11 @@
             </ul>
 
             <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
+            <form action="{{ route('logout1') }}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-primary btn-block">Đăng xuất</button>
+            </form>
+            {{-- <ul class="navbar-nav ml-auto">
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -27,7 +31,7 @@
                     </a>
                 </li>
 
-            </ul>
+            </ul> --}}
         </nav>
         <!-- /.navbar -->
         @include('admin.users.sidebar')
@@ -41,7 +45,7 @@
                 <div class="container-fluid">
 
                     @include('admin.users.alert')
-                    
+
                     @if (session('msg'))
                         <div class="alert alert-success">{{ session('msg') }}</div>
                     @endif

@@ -49,14 +49,33 @@ class LoginController extends Controller
         //     ]
         // );
 
-        $arraylog = ['email' => $request->email1, 'password' => $request->password1];
+        $arraylog = ['email' => $request->email1, 'password' => $request->password1, 'role' => 1, 'status' => 1];
+        $arraylog1 = ['email' => $request->email1, 'password' => $request->password1, 'role' => 0, 'status' => 1];
+        $arraylog2 = ['email' => $request->email1, 'password' => $request->password1, 'role' => 1, 'status' => 0];
+
         // dd($arraylog);
 
         if (Auth::attempt($arraylog, $request->remember1)) {
 
             return redirect()->route('admin')->with('msg', 'Đăng nhập thành công');
+        } elseif (Auth::attempt($arraylog1, $request->remember1)) {
+
+            return redirect()->route('login1')->with('msg', 'Tài khoản của bạn không phải quản trị viên');
+        } elseif (Auth::attempt($arraylog2, $request->remember1)) {
+
+            return redirect()->route('login1')->with('msg', 'Tài khoản của bạn đang bị khóa');
         } else {
+
             return redirect()->route('login1')->with('msg', 'Email hoặc password không đúng');
+        }
+    }
+
+    public function logOut()
+    {
+        if (Auth::logout()) {
+            return redirect()->route('login1')->with('msg', 'Đăng xuất thành công');
+        } else {
+            return redirect()->route('admin')->with('msg', 'Đăng xuất không thành công');
         }
     }
 
