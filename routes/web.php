@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Main1Controller;
 use App\Http\Controllers\Menu1Controller;
 use App\Http\Controllers\Product1Controller;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +81,10 @@ Route::prefix('admin')->group(function () {
 
         //Route::get('upload/services', [UploadController::class, 'create'])->name('createFile');
         Route::post('upload/services', [UploadController::class, 'store']);
+
+        Route::get('customers', [\App\Http\Controllers\Admin\CartController::class, 'index'])->name('listCustomer');
+        Route::get('customers/view/{customer}', [\App\Http\Controllers\Admin\CartController::class, 'show']);
+
     });
 });
 
@@ -92,3 +97,10 @@ Route::get('danh-muc/{id}-{slug}.html', [Menu1Controller::class, 'index']);
 
 //Giao diện chi tiết trang sản phẩm
 Route::get('san-pham/{id}-{slug}.html', [Product1Controller::class, 'index']);
+
+//Trang giỏ hàng
+Route::post('add-cart', [CartController::class, 'index']);
+Route::get('carts', [CartController::class, 'show']);
+Route::post('update-cart', [CartController::class, 'update']);
+Route::get('carts/delete/{id}', [CartController::class, 'remove']);   
+Route::post('carts', [CartController::class, 'addCart']);
