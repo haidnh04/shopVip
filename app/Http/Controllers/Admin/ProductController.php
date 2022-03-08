@@ -52,7 +52,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $this->productAdminService->insert($request);
-        return redirect()->route('createProduct')->with('msg', 'Tạo danh mục thành công');
+        return redirect()->route('createProduct');
     }
 
     /**
@@ -94,7 +94,7 @@ class ProductController extends Controller
     {
         $this->productAdminService->update($request, $product);
 
-        return redirect()->route('listProduct')->with('msg', 'Sửa sản phẩm thành công');
+        return redirect()->route('listProduct');
     }
 
     /**

@@ -17,6 +17,12 @@ class Product extends Model
         'menu_id',
         'price',
         'price_sale',
+        'amount',
+        'weight',
+        'dimensions',
+        'materials',
+        'color',
+        'size',
         'active',
     ];
 

@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     @include('head')
 </head>
 
-<body > <!--class="animsition" -->
+<body>
+    <!--class="animsition" -->
 
-<!-- Header -->
-@include('header')
+    <!-- Header -->
+    @include('header')
+    @include('sliders')
+    <!-- Cart -->
+    @include('carts')
 
-<!-- Cart -->
-@include('cart')
+    @yield('content')
 
-@yield('content')
-
-@include('footer')
+    @include('footer')
 
 </body>
+
 </html>

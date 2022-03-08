@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Services\Slider\SliderService;
 use App\Http\Services\Menu\MenuService;
 use App\Http\Services\Product\ProductService;
+use App\Models\Product;
 
 class Main1Controller extends Controller
 {
@@ -21,13 +22,27 @@ class Main1Controller extends Controller
         $this->product = $product;
     }
 
+    // public function showSlide()
+    // {
+    //     $title = '';
+    //     $sliders = $this->slider->show();
+    //     return view('slider', compact('sliders', 'title'));
+    // }
+
     public function index()
     {
         $title = 'Shop nước hoa ABC';
-        $sliders = $this->slider->show();
         $menus = $this->menu->show();
         $products = $this->product->get();
-        return view('home', compact('title', 'menus', 'sliders', 'products'));
+        return view('home', compact('title', 'menus', 'products'));
+    }
+
+    public function postSearch(Request $request)
+    {
+        $tuKhoa = $request->search;
+        $title = 'Tìm kiếm sản phẩm: ';
+        $searchs = Product::where('name', 'like', '%' . $tuKhoa . '%')->get();
+        return view('search', compact('title', 'searchs', 'tuKhoa'));
     }
 
     public function loadProduct(Request $request)

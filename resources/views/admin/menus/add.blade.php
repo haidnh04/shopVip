@@ -6,23 +6,29 @@
     <form action="{{ route('storeMenu') }}" method="POST">
         <div class="card-body">
             @csrf
-            <div class="form-group">
-                <label for="menu">Tên danh mục </label>
-                <input type="text" name="name" class="form-control" placeholder="Tên danh mục">
-                @error('name')
-                    <span style="color:red;">{{ $message }}</span>
-                @enderror
-            </div>
 
-            <div class="form-group">
-                <label>Danh mục</label>
-                <select name="parent_id" class="form-control">
-                    {{-- Lấy ra các danh mục cha --}}
-                    {{-- <option value="0">Danh mục cha</option> --}}
-                    @foreach ($menus as $menu)
-                        <option value="{{ $menu->id }}">{{ $menu->name }}</option>
-                    @endforeach
-                </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="menu">Tên danh mục </label>
+                        <input type="text" name="name" class="form-control" placeholder="Tên danh mục">
+                        @error('name')
+                            <span style="color:red;">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select name="parent_id" class="form-control">
+                            {{-- Lấy ra các danh mục cha --}}
+                            {{-- <option value="0">Danh mục cha</option> --}}
+                            @foreach ($menus as $menu)
+                                <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">

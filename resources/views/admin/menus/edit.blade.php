@@ -6,26 +6,33 @@
     <form action="" method="POST">
         <div class="card-body">
             @csrf
-            <div class="form-group">
-                <label for="menu">Tên danh mục </label>
-                <input type="text" name="name1" value="{{ $menu->name }}" class="form-control" placeholder="Tên danh mục">
-                @error('name')
-                    <span style="color:red;">{{ $message }}</span>
-                @enderror
-            </div>
 
-            <div class="form-group">
-                <label>Danh mục</label>
-                <select name="parent_id" class="form-control">
-                    {{-- Lấy ra các danh mục cha --}}
-                    <option value="0" {{ $menu->parent_id == 0 ? 'selected' : '' }}>Danh mục cha</option>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="menu">Tên danh mục </label>
+                        <input type="text" name="name1" value="{{ $menu->name }}" class="form-control"
+                            placeholder="Tên danh mục">
+                        @error('name')
+                            <span style="color:red;">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Danh mục</label>
+                        <select name="parent_id" class="form-control">
+                            {{-- Lấy ra các danh mục cha --}}
+                            <option value="0" {{ $menu->parent_id == 0 ? 'selected' : '' }}>Danh mục cha</option>
 
-                    @foreach ($menus as $menuParent)
-                        <option value="{{ $menuParent->id }}"
-                            {{ $menu->parent_id == $menuParent->id ? 'selected' : '' }}>
-                            {{ $menuParent->name }}</option>
-                    @endforeach
-                </select>
+                            @foreach ($menus as $menuParent)
+                                <option value="{{ $menuParent->id }}"
+                                    {{ $menu->parent_id == $menuParent->id ? 'selected' : '' }}>
+                                    {{ $menuParent->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">

@@ -19,7 +19,7 @@ class Menu extends Model
 
     public function products()
     {
-        //1 danh mục có nhiều sản phẩm (model product, 'id của khóa ngoại', 'id product')
+        //1 danh mục có nhiều sản phẩm (model product, 'id của khóa ngoại', 'id menu')
         return $this->hasMany(Product::class, 'menu_id', 'id');
     }
 }

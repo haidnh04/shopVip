@@ -91,13 +91,36 @@ class Helper
             : '<span class="btn btn-success btn-xs">YES</span>';
     }
 
-    public static function menus($menus, $parent_id = 0) :string
+    public static function menus($menus, $parent_id = 0): string
     {
+        // $html = '';
+        // foreach ($menus as $key => $menu) {
+        //     if ($menu->parent_id == $parent_id) {
+        //         $html .= '
+        //             <li>
+        //                 <a href="/danh-muc/' . $menu->id . '-' . Str::slug($menu->name, '-') . '.html">
+        //                     ' . $menu->name . '
+        //                 </a>';
+
+        //         unset($menus[$key]);
+
+        //         if (self::isChild($menus, $menu->id)) {
+        //             $html .= '<ul class="sub-menu">';
+        //             $html .= self::menus($menus, $menu->id);
+        //             $html .= '</ul>';
+        //         }
+
+        //         $html .= '</li>';
+        //     }
+        // }
+
+        // return $html;
+
         $html = '';
         foreach ($menus as $key => $menu) {
             if ($menu->parent_id == $parent_id) {
                 $html .= '
-                    <li>
+                <li>
                         <a href="/danh-muc/' . $menu->id . '-' . Str::slug($menu->name, '-') . '.html">
                             ' . $menu->name . '
                         </a>';
@@ -117,7 +140,18 @@ class Helper
         return $html;
     }
 
-    public static function isChild($menus, $id) : bool
+    public static function isParent($menus, $parent_id = 0): bool
+    {
+        foreach ($menus as $menu) {
+            if ($menu->parent_id == $parent_id) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static function isChild($menus, $id): bool
     {
         foreach ($menus as $menu) {
             if ($menu->parent_id == $id) {

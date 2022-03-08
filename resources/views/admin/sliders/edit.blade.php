@@ -6,21 +6,28 @@
     <form action="" method="POST">
         <div class="card-body">
             @csrf
-            <div class="form-group">
-                <label>Tên slide</label>
-                <input type="text" name="name" value="{{ $slider->name }}" class="form-control"
-                    placeholder="Tên sản phẩm">
-                @error('name')
-                    <span style="color:red;">{{ $message }}</span>
-                @enderror
-            </div>
 
-            <div class="form-group">
-                <label for="menu">URL</label>
-                <input type="text" name="url" class="form-control" placeholder="URL" value="{{ $slider->url }}">
-                @error('url')
-                    <span style="color:red;">{{ $message }}</span>
-                @enderror
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tên slide</label>
+                        <input type="text" name="name" value="{{ $slider->name }}" class="form-control"
+                            placeholder="Tên sản phẩm">
+                        @error('name')
+                            <span style="color:red;">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group">
+                        <label for="menu">URL</label>
+                        <input type="text" name="url" class="form-control" placeholder="URL" value="{{ $slider->url }}">
+                        @error('url')
+                            <span style="color:red;">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">

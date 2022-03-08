@@ -60,6 +60,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 @yield('content')
+                                
                             </div>
                             <!-- /.card -->
                         </div>
@@ -87,6 +88,7 @@
     </div>
     <!-- ./wrapper -->
     @include('admin.users.footer')
+    @yield('script11')
 </body>
 
 </html>

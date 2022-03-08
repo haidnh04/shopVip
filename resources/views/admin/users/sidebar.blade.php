@@ -37,7 +37,7 @@
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="/admin/menus/list" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Danh mục
@@ -61,7 +61,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/menus/list" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Sản phẩm
@@ -84,7 +84,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/menus/list" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Slide
@@ -107,7 +107,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="/admin/menus/list" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Tin tức
@@ -116,18 +116,47 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('listCategoryNew') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách thể loại</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('createCategoryNew') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm thể loại</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('listKindNew') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách loại tin</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('createKindNew') }}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Thêm loại tin</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('listNew') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách tin tức</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('createNew') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Thêm tin tức</p>
                             </a>
                         </li>
                     </ul>
+
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('listCustomer') }}" class="nav-link">
@@ -137,20 +166,29 @@
                             <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
-                    {{-- <ul class="nav nav-treeview">
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>
+                            Thành viên
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('listUser') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách tin tức</p>
+                                <p>Danh sách thành viên</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('createUser') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Thêm tin tức</p>
+                                <p>Thêm thành viên</p>
                             </a>
                         </li>
-                    </ul> --}}
+                    </ul>
                 </li>
 
             </ul>

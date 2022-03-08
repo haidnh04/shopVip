@@ -25,16 +25,20 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:menus,name',
-            'file' => 'required'
+            'file' => 'required',
+            'price' => 'required',
+            'amount' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'Bạn cần nhập tên danh mục',
-            'name.unique' => 'Tên danh mục đã tồn tại',
-            'file.required' => 'Bạn cần thêm ảnh sản phẩm'
+            'name.required' => 'Bạn cần nhập tên sản phẩm',
+            'name.unique' => 'Tên sản phẩm đã tồn tại',
+            'file.required' => 'Bạn cần thêm ảnh sản phẩm',
+            'price.required' => 'Bạn cần thêm giá sản phẩm',
+            'amount.required' => 'Bạn cần thêm số lượng sản phẩm',
         ];
     }
 }

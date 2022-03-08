@@ -4,7 +4,7 @@ namespace App\Http\Services\Product;
 
 use App\Models\Menu;
 use App\Models\Product;
-use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Session;
 
 class ProductAdminService
 {
@@ -27,18 +27,24 @@ class ProductAdminService
             $request->price != 0 && $request->price_sale != 0
             && $request->price_sale >= $request->price
         ) {
-            //Session::flash('error', 'Giá giảm phải nhỏ hơn giá gốc');
-            //with('msg', 'Giá giảm phải nhỏ hơn giá gốc');
+            Session::flash('error', 'Giá giảm phải nhỏ hơn giá gốc');
             return false;
         }
 
         //Nếu có giá sale và không có giá gốc thì báo
-        if (
-            $request->price = 0 && $request->price_sale != 0
-        ) {
-            //with('msg', 'Vui lòng nhập giá gốc');
-            return false;
-        }
+        // if (
+        //     $request->price = 0 && $request->price_sale != 0
+        // ) {
+        //     Session::flash('error', 'Vui lòng nhập giá gốc');
+        //     return false;
+        // }
+
+        // if (
+        //     $request->price < 0 || $request->price_sale < 0 || $request->amount < 0
+        // ) {
+        //     Session::flash('error', 'Vui lòng nhập không nhập số âm');
+        //     return false;
+        // }
 
         return true;
     }
@@ -50,15 +56,14 @@ class ProductAdminService
         $isValidPrice = $this->isValidPrice($request);
         if ($isValidPrice == false) return false;
         $request->except('_token');
-        //dd($request->all());
-        try {
 
+        try {
             //tương tự create bên menu. Đây dùng 1 hàm không cần thê từng phần tử như menu (cách khác)
             Product::create($request->all());
 
-            //with('msg', 'Thêm sản phẩm thành công');
+            Session::flash('success', 'Thêm sản phẩm thành công');
         } catch (\Exception $err) {
-            //with('msg', 'Thêm sản phẩm không thành công');
+            Session::flash('error', 'Có lỗi trong quá trình thêm sản phẩm, bạn thử lại sau');
             return false;
         }
 
@@ -67,8 +72,8 @@ class ProductAdminService
 
     public function update($request, $product)
     {
-        // $isValidPrice = $this->isValidPrice($request);
-        // if ($isValidPrice == false) return false;
+        $isValidPrice = $this->isValidPrice($request);
+        if ($isValidPrice == false) return false;
 
         try {
             $product->name = $request->name;
@@ -77,12 +82,19 @@ class ProductAdminService
             $product->price_sale = $request->price_sale;
             $product->description = $request->description;
             $product->file = $request->file;
+            $product->amount = $request->amount;
             $product->content = $request->content;
+            $product->weight = $request->weight;
+            $product->dimensions = $request->dimensions;
+            $product->materials = $request->materials;
+            $product->color = $request->color;
+            $product->size = $request->size;
             $product->active = $request->active;
             $product->save();
-
+            Session::flash('success', 'Cập nhật sản phẩm thành công');
             // dd($request->price);
         } catch (\Exception $err) {
+            Session::flash('error', 'Có lỗi trong quá trình cập nhật sản phẩm, bạn thử lại sau');
             return false;
         }
         return true;

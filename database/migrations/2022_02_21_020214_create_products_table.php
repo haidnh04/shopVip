@@ -18,6 +18,12 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->longtext('content');
+            $table->integer('amount');
+            $table->integer('weight');
+            $table->string('dimensions');
+            $table->string('materials');
+            $table->string('color');
+            $table->string('size');
             $table->string('file');
             $table->integer('menu_id');
             $table->integer('price')->nullable();

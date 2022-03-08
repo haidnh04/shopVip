@@ -15,11 +15,15 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu"><a href="/">Trang Chủ</a> </li>
-
-                        {!! $menusHtml !!}
-
+                        <li class="active-menu"><a href="about">Giới thiệu</a> </li>
+                        <li>Sản phẩm
+                            <ul class="sub-menu">
+                                {!! $menusHtml !!}
+                            </ul>
+                        </li>
+                        <li> <a href="/categorynews">Tin tức</a></li>
                         <li>
-                            <a href="contact.html">Liên Hệ</a>
+                            <a href="contact">Liên Hệ</a>
                         </li>
                     </ul>
                 </div>
@@ -73,7 +77,10 @@
         <ul class="main-menu-m">
             <li class="active-menu"><a href="/">Trang Chủ</a> </li>
 
+
             {!! $menusHtml !!}
+
+            <li> <a href="#">Tin tức</a></li>
 
             <li>
                 <a href="contact.html">Liên Hệ</a>
@@ -89,7 +96,8 @@
                 <img src="/template/images/icons/icon-close2.png" alt="CLOSE">
             </button>
 
-            <form class="wrap-search-header flex-w p-l-15">
+            <form class="wrap-search-header flex-w p-l-15" method="post" action="{{ route('timkiem113') }}">
+                @csrf
                 <button class="flex-c-m trans-04">
                     <i class="zmdi zmdi-search"></i>
                 </button>

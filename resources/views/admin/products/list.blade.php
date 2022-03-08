@@ -7,6 +7,7 @@
                 <th>STT: </th>
                 <th>Tên sản phẩm: </th>
                 <th>Danh mục: </th>
+                <th>Số lượng: </th>
                 <th>Giá: </th>
                 <th>Giá giảm: </th>
                 <th>Trạng thái: </th>
@@ -21,6 +22,7 @@
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->menu->name }}</td>
+                    <td>{{ $product->amount }}</td>
                     <td>{{ $product->price }}</td>
                     <td>{{ $product->price_sale }}</td>
                     <td>{!! \App\Helpers\Helper::active($product->active) !!}</td>
