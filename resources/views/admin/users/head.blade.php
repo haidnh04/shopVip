@@ -13,6 +13,10 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="/template/admin/dist/css/adminlte.min.css">
 
+{{-- vue css --}}
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @yield('head')

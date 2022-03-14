@@ -8,4 +8,8 @@
 
 <script src="/template/admin/js/main.js"></script>
 
+{{-- Vue js --}}
+<script src="{{ asset('js/app.js') }}" defer></script>
+
+
 @yield('footer')

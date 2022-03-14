@@ -30,7 +30,7 @@ class MenuController extends Controller
     public function store(CreateFormRequest $request)
     {
         $this->menuService->create($request);
-        return redirect()->route('createMenu')->with('msg', 'Tạo danh mục thành công');
+        return redirect()->route('createMenu');
     }
 
     // Danh sách các danh mục (truyền qua bên MenuService thao tác)
@@ -55,7 +55,7 @@ class MenuController extends Controller
     {
         $abc = $this->menuService->update($request, $menu);
         // dd($abc);
-        return redirect()->route('listMenu')->with('msg', 'Sửa danh mục thành công');
+        return redirect()->route('listMenu');
     }
 
     //Xóa các danh mục (truyền qua bên MenuService thao tác

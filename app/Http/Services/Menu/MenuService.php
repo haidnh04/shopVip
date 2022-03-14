@@ -5,6 +5,7 @@ namespace App\Http\Services\Menu;
 use App\Models\Menu;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 
 class MenuService
 {
@@ -38,7 +39,9 @@ class MenuService
                 'active' => $request->active,
                 //'slug' => Str::slug($request->name, '-'),
             ]);
+            Session::flash('success', 'Thêm danh mục thành công');
         } catch (\Exception $err) {
+            Session::flash('error', 'Có lỗi trong quá trình thêm danh mục, bạn thử lại sau');
         }
     }
 
@@ -55,7 +58,9 @@ class MenuService
             $menu->save();
 
             return true;
+            Session::flash('success', 'Cập nhật danh mục thành công');
         } catch (\Exception $err) {
+            Session::flash('error', 'Có lỗi trong quá trình cập nhât danh mục, bạn thử lại sau');
         }
     }
 

@@ -13,6 +13,7 @@ use App\Http\Controllers\Menu1Controller;
 use App\Http\Controllers\Product1Controller;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Admin\Users\UserController;
+use App\Http\Controllers\Admin\Users\User1Controller;
 use App\Http\Controllers\Admin\CategoryNewController;
 use App\Http\Controllers\Admin\KindNewController;
 use App\Http\Controllers\Admin\NewController;
@@ -58,6 +59,20 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{user}', [UserController::class, 'update']);
 
             Route::delete('destroy', [UserController::class, 'destroy']);
+        });
+
+        Route::prefix('user1s')->group(function () {
+            Route::get('/add', [User1Controller::class, 'create'])->name('createUser1');
+            Route::post('/store', [User1Controller::class, 'store'])->name('storeUser1');
+
+            Route::get('/list', [User1Controller::class, 'index'])->name('listUser1');
+            Route::get('/getUsers', [User1Controller::class, 'getUsers']);
+
+            Route::get('/edit/{id}/edit', [User1Controller::class, 'show'])->name('showUser1');
+            Route::get('/getuserbyid/{id}', [User1Controller::class, 'getUsersById']);
+            Route::put('/update/{id}', [User1Controller::class, 'update']);
+
+            Route::delete('/destroy/{id}', [User1Controller::class, 'destroy']);
         });
 
         //Trang menu(danh mục)
