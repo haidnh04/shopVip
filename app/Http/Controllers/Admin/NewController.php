@@ -9,6 +9,12 @@ use App\Models\NewCategory;
 use App\Models\KindNew;
 use Illuminate\Support\Facades\Session;
 use App\Models\Comment;
+use App\Http\Requests\News\CreateNewsRequest;
+use App\Http\Requests\News\UpdateNewsRequest;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+
+
 
 class NewController extends Controller
 {
@@ -19,9 +25,11 @@ class NewController extends Controller
      */
     public function index()
     {
-        $new1s = NNew::orderByDesc('id')->paginate(10);
+        $news = NNew::orderByDesc('id')->paginate(10);
         $title = 'Danh sách tin tức';
-        return view('admin.news.news.list', compact('title', 'new1s'));
+        $categoryNews = NewCategory::get();
+        $kindNews = KindNew::get();
+        return view('admin.news.news.list', compact('title', 'news','categoryNews','kindNews'));
     }
 
     /**
@@ -43,7 +51,7 @@ class NewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateNewsRequest $request)
     {
         try {
             NNew::create($request->all());
@@ -51,8 +59,7 @@ class NewController extends Controller
         } catch (\Exception $err) {
             Session::flash('error', 'Có lỗi trong quá trình thêm tin tức, bạn thử lại sau');
         }
-
-        return redirect()->back();
+        return redirect()->route('listNew');
     }
 
     /**
@@ -89,7 +96,7 @@ class NewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NNew $new)
+    public function update(UpdateNewsRequest $request, NNew $new)
     {
         try {
             $new->name = $request->name;

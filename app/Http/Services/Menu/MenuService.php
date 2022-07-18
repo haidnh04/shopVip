@@ -5,12 +5,13 @@ namespace App\Http\Services\Menu;
 use App\Models\Menu;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 
 class MenuService
 {
     public function getParent()
     {
-        return Menu::where('parent_id', 0)->get();
+        return Menu::where('parent_id', 0)->where('active', 1)->get();
     }
 
     public function show()
@@ -38,24 +39,28 @@ class MenuService
                 'active' => $request->active,
                 //'slug' => Str::slug($request->name, '-'),
             ]);
+            Session::flash('success', 'Thêm danh mục thành công');
         } catch (\Exception $err) {
+            Session::flash('error', 'Có lỗi trong quá trình thêm danh mục, bạn thử lại sau');
         }
     }
 
-    public function update($request, $menu): bool
+    public function update($request, $menu)
     {
         try {
             if ($request->parent_id != $menu->id) {
                 $menu->parent_id = $request->parent_id;
             }
-            $menu->name = $request->name1;
+            $menu->name = $request->name;
             $menu->description = $request->description;
             $menu->content = $request->content;
             $menu->active = $request->active;
             $menu->save();
 
-            return true;
+            // return true;
+            Session::flash('success', 'Cập nhật danh mục thành công');
         } catch (\Exception $err) {
+            Session::flash('error', 'Có lỗi trong quá trình cập nhât danh mục, bạn thử lại sau');
         }
     }
 

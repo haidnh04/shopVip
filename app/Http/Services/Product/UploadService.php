@@ -9,6 +9,7 @@ class UploadService
 {
     public function store($request)
     {
+        //gõ php artisan storage:link để ra link ảnh
         if ($request->hasFile('file')) {
             try {
                 //Lấy tên file ra

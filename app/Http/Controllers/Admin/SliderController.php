@@ -7,6 +7,8 @@ use App\Http\Services\Slide\SlideService;
 use Illuminate\Http\Request;
 use App\Http\Services\Slider\SliderService;
 use App\Models\Slider;
+use App\Http\Requests\Slide\CreateSlideRequest;
+use App\Http\Requests\Slide\UpdateSlideRequest;
 
 class SliderController extends Controller
 {
@@ -23,11 +25,11 @@ class SliderController extends Controller
         $this->sliderService = $sliderService;
     }
 
-    public function index()
+    public function index(Slider $slider)
     {
         $title = 'Danh sách các Sliders';
         $sliders = $this->sliderService->getAll();
-        return view('admin.sliders.list', compact('title', 'sliders'));
+        return view('admin.sliders.list', compact('title', 'sliders', 'slider'));
     }
 
     /**
@@ -47,10 +49,10 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSlideRequest $request)
     {
         $this->sliderService->store($request);
-        return redirect()->route('createSlider')->with('msg', 'Tạo slide thành công');
+        return redirect()->route('listSlider')->with('msg', 'Tạo slide thành công');
     }
 
     /**
@@ -84,7 +86,7 @@ class SliderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Slider $slider, Request $request)
+    public function update(Slider $slider, UpdateSlideRequest $request)
     {
         $this->sliderService->update($request, $slider);
         return redirect()->route('listSlider')->with('msg', 'Cập nhật Slider thành công');

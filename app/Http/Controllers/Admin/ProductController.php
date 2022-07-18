@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Product\ProductRequest;
+use App\Http\Requests\Product\CreateProductRequest;
+use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Services\Product\ProductAdminService;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
@@ -28,7 +29,8 @@ class ProductController extends Controller
     {
         $title = "Danh sách sản phẩm";
         $products = $this->productAdminService->getAll();
-        return view('admin.products.list', compact('title', 'products'));
+        $menus = $this->productAdminService->getMenu();
+        return view('admin.products.list', compact('title', 'products', 'menus'));
     }
 
     /**
@@ -49,10 +51,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(CreateProductRequest $request)
     {
         $this->productAdminService->insert($request);
-        return redirect()->route('createProduct');
+        return redirect()->route('listProduct');
     }
 
     /**
@@ -90,7 +92,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Product $product, Request $request)
+    public function update(Product $product, UpdateProductRequest $request)
     {
         $this->productAdminService->update($request, $product);
 

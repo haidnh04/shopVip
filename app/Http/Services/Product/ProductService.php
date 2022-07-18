@@ -4,6 +4,8 @@ namespace App\Http\Services\Product;
 
 use App\Models\Menu;
 use App\Models\Product;
+use Illuminate\Support\Facades\Log;
+
 
 class ProductService
 {
@@ -11,13 +13,14 @@ class ProductService
     // const LIMIT = 16;
     public function get()
     {
-        return Product::select('id', 'name', 'price', 'price_sale', 'file')
+        $productShows = Product::select('id', 'name', 'price', 'price_sale', 'file')
             ->orderByDesc('id')
             // ->when($page != null, function ($query) use ($page) {
             //     $query->offset($page * self::LIMIT);
             // })
             // ->limit(self::LIMIT)
             ->get();
+        return $productShows;
     }
 
     public function show($id)

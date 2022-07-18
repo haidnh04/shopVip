@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="menu">Tên loại tin tức</label>
+                        <label for="menu">Tên loại tin tức <span style="color: red">*</span></label>
                         <input type="text" name="name" value="{{ $kindnew->name }}" class="form-control"
                             placeholder="Tên loại tin tức">
                         @error('name')
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Danh mục</label>
+                        <label>Danh mục <span style="color: red">*</span></label>
                         <select name="category_id" class="form-control">
                             {{-- Lấy ra các danh mục cha --}}
                             {{-- <option value="0">Danh mục cha</option> --}}
@@ -35,7 +35,7 @@
             </div>
 
             <div class="form-group">
-                <label>Kích hoạt</label>
+                <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active" name="active" checked="">
                     <label for="active" class="custom-control-label">Có</label>
@@ -51,6 +51,9 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Cập nhật loại tin tức</button>
+            <a href="{{ route('listKindNew') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+                <p>Quay lại</p>
+            </a>
         </div>
     </form>
 @endsection

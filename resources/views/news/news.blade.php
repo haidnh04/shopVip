@@ -1,4 +1,4 @@
-@extends('main1')
+@extends('main')
 
 @section('content')
     <link href="/template/tintuc/css/bootstrap.min.css" rel="stylesheet">

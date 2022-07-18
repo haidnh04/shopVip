@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Thể loại</label>
+                        <label>Thể loại <span style="color: red">*</span></label>
                         <select name="category_id" class="form-control" id="category">
                             {{-- Lấy ra các danh mục cha --}}
                             {{-- <option value="0">Danh mục cha</option> --}}
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Loại tin</label>
+                        <label>Loại tin <span style="color: red">*</span></label>
                         <select name="kind_id" class="form-control" id="kind">
                             {{-- Lấy ra các danh mục cha --}}
                             {{-- <option value="0">Danh mục cha</option> --}}
@@ -38,7 +38,7 @@
             </div>
 
             <div class="form-group">
-                <label for="menu">Tiêu đề</label>
+                <label for="menu">Tiêu đề <span style="color: red">*</span></label>
                 <input type="text" name="name" value="{{ $new->name }}" class="form-control"
                     placeholder="Tiêu đề tin tức">
                 @error('name')
@@ -57,7 +57,7 @@
             </div>
 
             <div class="form-group">
-                <label for="menu">Ảnh tin tức</label>
+                <label for="menu">Ảnh tin tức <span style="color: red">*</span></label>
                 <input type="file" name="file" class="form-control" id="upload">
                 <div id="image_show">
                     <a href="{{ $new->file }}" target="_blank">
@@ -71,7 +71,7 @@
             </div>
 
             <div class="form-group">
-                <label>Nổi bật</label>
+                <label>Nổi bật <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active1" name="hightlight"
                         {{ $new->hightlight == 1 ? 'checked=""' : '' }}>
@@ -85,7 +85,7 @@
             </div>
 
             <div class="form-group">
-                <label>Kích hoạt</label>
+                <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active" name="active"
                         {{ $new->active == 1 ? 'checked=""' : '' }}>
@@ -103,6 +103,9 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Tạo tin tức</button>
+            <a href="{{ route('listNew') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+                <p>Quay lại</p>
+            </a>
         </div>
     </form>
 

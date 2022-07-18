@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="menu">Tên sản phẩm</label>
+                        <label for="menu">Tên sản phẩm <span style="color: red">*</span></label>
                         <input type="text" name="name" value="{{ old('name') }}" class="form-control"
                             placeholder="Tên sản phẩm">
                         @error('name')
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Danh mục</label>
+                        <label>Danh mục <span style="color: red">*</span></label>
                         <select name="menu_id" class="form-control">
                             {{-- Lấy ra các danh mục cha --}}
                             {{-- <option value="0">Danh mục cha</option> --}}
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="menu">Số lượng</label>
+                        <label for="menu">Số lượng <span style="color: red">*</span></label>
                         <input type="number" name="amount" class="form-control" placeholder="Số lượng sản phẩm"
                             value="{{ old('amount') }}">
                         @error('amount')
@@ -109,13 +109,13 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="menu">Kích cỡ</label>
                 <input type="text" name="size" class="form-control" placeholder="" value="{{ old('size') }}">
                 @error('size')
                     <span style="color:red;">{{ $message }}</span>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <label>Mô tả</label>
@@ -130,7 +130,7 @@
 
 
             <div class="form-group">
-                <label for="menu">Ảnh sản phẩm</label>
+                <label for="menu">Ảnh sản phẩm <span style="color: red">*</span></label>
                 <input type="file" name="file" class="form-control" id="upload">
                 <div id="image_show">
 
@@ -143,7 +143,7 @@
 
 
             <div class="form-group">
-                <label>Kích hoạt</label>
+                <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active" name="active" checked="">
                     <label for="active" class="custom-control-label">Có</label>
@@ -156,9 +156,11 @@
 
         </div>
 
-
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Tạo sản phẩm</button>
+            <a href="{{ route('listProduct') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+                <p>Quay lại</p>
+            </a>
         </div>
     </form>
 @endsection

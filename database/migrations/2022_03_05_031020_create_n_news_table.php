@@ -16,11 +16,11 @@ class CreateNNewsTable extends Migration
         Schema::create('n_news', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('summary');
-            $table->longText('content');
-            $table->string('file');
-            $table->tinyInteger('hightlight');
-            $table->integer('view');
+            $table->text('summary')->nullable();
+            $table->longText('content')->nullable();
+            $table->string('file')->nullable();
+            $table->tinyInteger('hightlight')->nullable();
+            $table->integer('view')->nullable();
             $table->integer('kind_id');
             $table->tinyInteger('active');
             $table->timestamps();

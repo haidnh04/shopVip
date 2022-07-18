@@ -34,10 +34,10 @@
                                 </ul>
                             </div>
                             <div class="wrap-slick3-arrows flex-sb-m flex-w">
-                                <button class="arrow-slick3 prev-slick3 slick-arrow" style=""><i class="fa fa-angle-left"
-                                        aria-hidden="true"></i></button>
-                                <button class="arrow-slick3 next-slick3 slick-arrow" style=""><i class="fa fa-angle-right"
-                                        aria-hidden="true"></i></button>
+                                <button class="arrow-slick3 prev-slick3 slick-arrow" style=""><i
+                                        class="fa fa-angle-left" aria-hidden="true"></i></button>
+                                <button class="arrow-slick3 next-slick3 slick-arrow" style=""><i
+                                        class="fa fa-angle-right" aria-hidden="true"></i></button>
                             </div>
 
                             <div class="slick3 gallery-lb slick-initialized slick-slider slick-dotted">
@@ -74,12 +74,29 @@
                             {{ $title }}
                         </h4>
 
-                        <span class="mtext-106 cl2">
-                            {!! \App\Helpers\Helper::price($product->price, $product->price_sale) !!}
+                        <span>
+                            @if ($product->amount > 0)
+                                <b>Số lượng:</b> <span style="color: blue;">{!! \App\Helpers\Helper::amountProduct($product->amount) !!}</span>
+                            @else
+                                <span style="color: blue;">{!! \App\Helpers\Helper::amountProduct($product->amount) !!}</span>
+                            @endif
+                        </span>
+                        <br />
+                        <span>
+                            {{-- @if ($product->price > 0 || $product->price_sale > 0) --}}
+                            <b>Giá:</b>
+                            <span style="color: red;">
+                                {!! \App\Helpers\Helper::price($product->price, $product->price_sale) !!}
+                            </span>
+                            {{-- @else
+                                <span style="color: red;">
+                                    {!! \App\Helpers\Helper::price($product->price, $product->price_sale) !!}
+                                </span>
+                            @endif --}}
                         </span>
 
                         <p class="stext-102 cl3 p-t-23">
-                            {{ $product->description }}
+                            <b>Mô tả:</b> {{ $product->description }}
                         </p>
 
                         <!--  -->
@@ -104,7 +121,7 @@
 
                                             <button type="submit"
                                                 class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ">
-                                                Add to cart
+                                                Thêm giỏ hàng
                                             </button>
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                         @endif
@@ -149,16 +166,17 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item p-b-10">
-                            <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                            <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Mô tả sản
+                                phẩm</a>
                         </li>
 
                         <li class="nav-item p-b-10">
-                            <a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional
-                                information</a>
+                            <a class="nav-link" data-toggle="tab" href="#information" role="tab">Thông tin chi
+                                tiết</a>
                         </li>
 
                         <li class="nav-item p-b-10">
-                            <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+                            <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Đánh giá (1)</a>
                         </li>
                     </ul>
 
@@ -293,8 +311,7 @@
                                             <div class="row p-b-25">
                                                 <div class="col-12 p-b-5">
                                                     <label class="stext-102 cl3" for="review">Your review</label>
-                                                    <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10"
-                                                        id="review" name="review"></textarea>
+                                                    <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
                                                 </div>
 
                                                 <div class="col-sm-6 p-b-5">
@@ -327,7 +344,7 @@
         <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
 
             <span class="stext-107 cl6 p-lr-25">
-                Categories: {{ $product->menu->name }}
+                Danh mục: {{ $product->menu->name }}
             </span>
         </div>
     </section>
@@ -336,7 +353,7 @@
         <div class="container">
             <div class="p-b-45">
                 <h3 class="ltext-106 cl5 txt-center">
-                    Related product
+                    Sản phẩm liên quan
                 </h3>
             </div>
 

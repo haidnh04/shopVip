@@ -7,7 +7,7 @@
         <div class="card-body">
             @csrf
             <div class="form-group">
-                <label for="menu">Tên thành viên</label>
+                <label for="menu">Tên thành viên <span style="color: red">*</span></label>
                 <input type="text" name="name" value="{{ $user->name }}" class="form-control"
                     placeholder="Tên thành viên">
                 @error('name')
@@ -16,7 +16,7 @@
             </div>
 
             <div class="form-group">
-                <label for="menu">Email</label>
+                <label for="menu">Email <span style="color: red">*</span></label>
                 <input type="text" name="email" value="{{ $user->email }}" class="form-control" placeholder="Email">
                 @error('email')
                     <span style="color:red;">{{ $message }}</span>
@@ -25,15 +25,24 @@
 
             <div class="form-group">
                 <label for="menu">Mật khẩu</label>
-                <input type="password" name="password" value="{{ $user->password }}" class="form-control"
-                    placeholder="mật khẩu">
+                <input type="password" name="password"  class="form-control"
+                    placeholder="Mật khẩu">
                 @error('password')
                     <span style="color:red;">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-group">
-                <label>Vai trò</label>
+                <label for="menu">Xác nhận mật khẩu</label>
+                <input type="password" name="password_confirmation" class="form-control"
+                    placeholder="Xác nhận mật khẩu">
+                @error('password')
+                    <span style="color:red;">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label>Vai trò <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active" name="role"
                         {{ $user->role == 1 ? 'checked=""' : '' }}>
@@ -47,7 +56,7 @@
             </div>
 
             <div class="form-group">
-                <label>Kích hoạt</label>
+                <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active1" name="status"
                         {{ $user->status == 1 ? 'checked=""' : '' }}>
@@ -65,6 +74,9 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Cập nhật thành viên</button>
+            <a href="{{ route('listUser') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+                <p>Quay lại</p>
+            </a>
         </div>
     </form>
 @endsection

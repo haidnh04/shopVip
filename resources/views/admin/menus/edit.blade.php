@@ -10,8 +10,8 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="menu">Tên danh mục </label>
-                        <input type="text" name="name1" value="{{ $menu->name }}" class="form-control"
+                        <label for="menu">Tên danh mục <span style="color: red">*</span></label>
+                        <input type="text" name="name" value="{{ $menu->name }}" class="form-control"
                             placeholder="Tên danh mục">
                         @error('name')
                             <span style="color:red;">{{ $message }}</span>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Danh mục</label>
+                        <label>Danh mục <span style="color: red">*</span></label>
                         <select name="parent_id" class="form-control">
                             {{-- Lấy ra các danh mục cha --}}
                             <option value="0" {{ $menu->parent_id == 0 ? 'selected' : '' }}>Danh mục cha</option>
@@ -46,7 +46,7 @@
             </div>
 
             <div class="form-group">
-                <label>Kích hoạt</label>
+                <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active" name="active"
                         {{ $menu->active == 1 ? 'checked=""' : '' }}>
@@ -64,6 +64,9 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Cập nhật danh mục</button>
+            <a href="{{ route('listMenu') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+                <p>Quay lại</p>
+            </a>
         </div>
     </form>
 @endsection

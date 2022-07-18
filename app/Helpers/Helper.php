@@ -7,6 +7,12 @@ use phpDocumentor\Reflection\Types\Self_;
 
 class Helper
 {
+    public static function convertDatetimeUpdate($timeAt)
+    {
+        if (!empty($timeAt)) return date_format($timeAt, 'd-m-Y');
+        return '<p> </p>';
+    }
+
     public static function menu($menus, $parent_id = 0, $char = '')
     {
         $html = '';
@@ -19,7 +25,8 @@ class Helper
                     <td>' . $menu->id . ' </td>
                     <td>' . $char . $menu->name . '  </td>
                     <td>' . self::active($menu->active) . ' </td>
-                    <td>' . $menu->updated_at . ' </td>
+                    <td>' . \App\Helpers\Helper::convertDatetimeUpdate($menu->created_at) . ' </td>
+                    <td>' . \App\Helpers\Helper::convertDatetimeUpdate($menu->updated_at) . ' </td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="/admin/menus/edit/' . $menu->id . '">
                         <i class="fas fa-edit"></i>
@@ -87,8 +94,8 @@ class Helper
 
     public static function active($active = 0): string
     {
-        return $active == 0 ? '<span class="btn btn-danger btn-xs">NO</span>'
-            : '<span class="btn btn-success btn-xs">YES</span>';
+        return $active == 0 ? '<span class="btn btn-danger btn-xs">Không</span>'
+            : '<span class="btn btn-success btn-xs">Có</span>';
     }
 
     public static function menus($menus, $parent_id = 0): string
@@ -166,6 +173,24 @@ class Helper
     {
         if ($priceSale != 0) return number_format($priceSale);
         if ($price != 0)  return number_format($price);
-        return '<a href="/lien-he.html">Liên Hệ</a>';
+        return '<a href="/lien-he.html" style="text-deconration:none; color:red;">Liên Hệ</a>';
+    }
+
+    public static function priceAdminProduct($price = 0)
+    {
+        if ($price != 0)  return number_format($price);
+        return '<p>Chưa có giá</p>';
+    }
+
+    public static function salePriceAdminProduct($priceSale = 0)
+    {
+        if ($priceSale != 0)  return number_format($priceSale);
+        return '<p>Chưa có giá sale</p>';
+    }
+
+    public static function amountProduct($amount = 0)
+    {
+        if ($amount != 0)  return number_format($amount);
+        return '<p>Hết hàng</p>';
     }
 }

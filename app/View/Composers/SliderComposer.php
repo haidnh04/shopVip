@@ -17,7 +17,7 @@ class SliderComposer
 
     public function compose(View $view)
     {
-        $sliders =  Slider::all();
+        $sliders =  Slider::where('active', 1)->get();
         $view->with('sliders', $sliders);
     }
 }

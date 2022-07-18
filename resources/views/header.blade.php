@@ -15,7 +15,7 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li class="active-menu"><a href="/">Trang Chủ</a> </li>
-                        <li class="active-menu"><a href="about">Giới thiệu</a> </li>
+                        <li class="active-menu"><a href="/about">Giới thiệu</a> </li>
                         <li>Sản phẩm
                             <ul class="sub-menu">
                                 {!! $menusHtml !!}
@@ -23,7 +23,7 @@
                         </li>
                         <li> <a href="/categorynews">Tin tức</a></li>
                         <li>
-                            <a href="contact">Liên Hệ</a>
+                            <a href="/contact">Liên Hệ</a>
                         </li>
                     </ul>
                 </div>

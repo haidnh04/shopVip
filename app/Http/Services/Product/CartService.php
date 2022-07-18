@@ -73,7 +73,7 @@ class CartService
 
     public function addCart($request)
     {
-        try {
+        // try {
             DB::beginTransaction();
 
             $carts = Session::get('carts');
@@ -98,11 +98,11 @@ class CartService
             SendMail::dispatch($request->input('email'))->delay(now()->addSeconds(2));
 
             Session::forget('carts');
-        } catch (\Exception $err) {
-            DB::rollBack();
-            Session::flash('error', 'Đặt Hàng Lỗi, Vui lòng thử lại sau');
-            return false;
-        }
+        // } catch (\Exception $err) {
+        //     DB::rollBack();
+        //     Session::flash('error', 'Đặt Hàng Lỗi, Vui lòng thử lại sau');
+        //     return false;
+        // }
 
         return true;
     }

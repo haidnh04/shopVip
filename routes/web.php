@@ -1,4 +1,6 @@
 <?php
+App\Lbc\LaravelBootstrapComponents::init();
+App\Lbc\LaravelBootstrapComponents::initDocs();
 
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use Illuminate\Support\Facades\Route;
@@ -8,17 +10,20 @@ use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Main1Controller;
-use App\Http\Controllers\Menu1Controller;
-use App\Http\Controllers\Product1Controller;
+use App\Http\Controllers\HomeUsersController;
+use App\Http\Controllers\MenuUsersController;
+use App\Http\Controllers\ProductUsersController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Admin\Users\UserController;
+use App\Http\Controllers\Admin\Users\User1Controller;
 use App\Http\Controllers\Admin\CategoryNewController;
 use App\Http\Controllers\Admin\KindNewController;
 use App\Http\Controllers\Admin\NewController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\AjaxController;
-use App\Http\Controllers\New1Controller;
+use App\Http\Controllers\NewUsersController;
+use App\Http\Controllers\SendNotificationController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +48,8 @@ Route::prefix('admin')->group(function () {
     Route::middleware('auth', 'checkPermission')->group(function () {
         //Trang admin
         Route::get('/', [MainController::class, 'index'])->name('admin');
+        Route::post('add', [MainController::class, 'storeTodoList'])->name('storeTodoList');
+        Route::delete('destroyTodoList', [MainController::class, 'destroyTodoList']);
 
         //Trang master
         //Route::get('main', [MainController::class, 'index'])->name('main');
@@ -58,6 +65,23 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{user}', [UserController::class, 'update']);
 
             Route::delete('destroy', [UserController::class, 'destroy']);
+
+            Route::get('export', [UserController::class, 'exportUsers'])->name('exportUser');
+        });
+
+
+        Route::prefix('user1s')->group(function () {
+            Route::get('/add', [User1Controller::class, 'create'])->name('createUser1');
+            Route::post('/store', [User1Controller::class, 'store'])->name('storeUser1');
+
+            Route::get('/list', [User1Controller::class, 'index'])->name('listUser1');
+            Route::get('/getUsers', [User1Controller::class, 'getUsers']);
+
+            Route::get('/edit/{id}', [User1Controller::class, 'show'])->name('showUser1');
+            Route::get('/getuserbyid/{id}', [User1Controller::class, 'getUsersById']);
+            Route::put('/update/{id}', [User1Controller::class, 'update']);
+
+            Route::delete('/destroy/{id}', [User1Controller::class, 'destroy']);
         });
 
         //Trang menu(danh mục)
@@ -140,7 +164,7 @@ Route::prefix('admin')->group(function () {
             Route::get('list', [SliderController::class, 'index'])->name('listSlider');
 
             Route::get('edit/{slider}', [SliderController::class, 'show'])->name('showSlider');
-            Route::post('edit/{slider}', [SliderController::class, 'update']);
+            Route::post('edit/{slider}', [SliderController::class, 'update'])->name('updateSlider');
 
             Route::delete('destroy', [SliderController::class, 'destroy']);
         });
@@ -152,28 +176,32 @@ Route::prefix('admin')->group(function () {
         //Trang quản lý khách hàng đã mua hàng gì
         Route::get('customers', [\App\Http\Controllers\Admin\CartController::class, 'index'])->name('listCustomer');
         Route::get('customers/view/{customer}', [\App\Http\Controllers\Admin\CartController::class, 'show']);
+
+        //Notification
+        Route::get('notification', [SendNotificationController::class, 'create'])->name('createNotification');
+        Route::post('notification', [SendNotificationController::class, 'store'])->name('storeNotification');
     });
 });
 
 //GIao diện
-Route::get('/', [Main1Controller::class, 'index']);
-Route::post('/services/load-product', [Main1Controller::class, 'loadProduct']);
+Route::get('/', [HomeUsersController::class, 'index']);
+Route::post('/services/load-product', [HomeUsersController::class, 'loadProduct']);
 
 //liên hệ
-Route::get('contact', [New1Controller::class, 'contact']);
+Route::get('contact', [NewUsersController::class, 'contact']);
 
 
 //Giới thiệu
-Route::get('about', [New1Controller::class, 'about']);
+Route::get('about', [NewUsersController::class, 'about']);
 
 //Trang search
-Route::post('search', [Main1Controller::class, 'postSearch'])->name('timkiem113');
+Route::post('search', [HomeUsersController::class, 'postSearch'])->name('timkiem113');
 
 //Giao diện trang danh mục (chưa danh sách các sản phẩm)
-Route::get('danh-muc/{id}-{slug}.html', [Menu1Controller::class, 'index']);
+Route::get('danh-muc/{id}-{slug}.html', [MenuUsersController::class, 'index']);
 
 //Giao diện chi tiết trang sản phẩm
-Route::get('san-pham/{id}-{slug}.html', [Product1Controller::class, 'index']);
+Route::get('san-pham/{id}-{slug}.html', [ProductUsersController::class, 'index']);
 
 //Trang giỏ hàng
 Route::post('add-cart', [CartController::class, 'index']);
@@ -183,10 +211,10 @@ Route::get('carts/delete/{id}', [CartController::class, 'remove']);
 Route::post('carts', [CartController::class, 'addCart']);
 
 //trang hiển thị thể loại tin tức
-Route::get('categorynews', [New1Controller::class, 'categoryNews']);
+Route::get('categorynews', [NewUsersController::class, 'categoryNews']);
 //trang hiển thị loại tin tức
-Route::get('kindnews/{id}', [New1Controller::class, 'kindNews']);
+Route::get('kindnews/{id}', [NewUsersController::class, 'kindNews']);
 //trang hiển thị chi tiết tin tức
-Route::get('news/{id}', [New1Controller::class, 'news']);
+Route::get('news/{id}', [NewUsersController::class, 'news']);
 //phần post đăng nhận xét trong chi tiết tin tức
-Route::post('comment/{id}', [New1Controller::class, 'postComment']);
+Route::post('comment/{id}', [NewUsersController::class, 'postComment']);

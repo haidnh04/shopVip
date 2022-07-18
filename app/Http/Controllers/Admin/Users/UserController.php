@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin\Users;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Requests\User\UserRequest;
+use App\Http\Requests\User\CreateUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Http\Services\User\UserService;
 use Illuminate\Http\JsonResponse;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -16,6 +19,11 @@ class UserController extends Controller
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
+    }
+
+    public function exportUsers() 
+    {
+        return Excel::download(new UsersExport, 'DSThanhVien.xlsx');
     }
 
     public function index()
@@ -33,7 +41,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $title = 'thêm thành thành viên';
+        $title = 'Thêm thành thành viên';
         return view('admin.users.add', compact('title'));
     }
 
@@ -43,10 +51,10 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(CreateUserRequest $request)
     {
         $this->userService->store($request);
-        return redirect()->route('createUser')->with('msg', 'Tạo người dùng thành công');
+        return redirect()->route('listUser')->with('msg', 'Tạo người dùng thành công');
     }
 
     /**
@@ -80,7 +88,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(User $user, Request $request)
+    public function update(User $user, UpdateUserRequest $request)
     {
         $this->userService->update($request, $user);
 

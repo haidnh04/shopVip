@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NewCategory;
 use App\Models\KindNew;
+use App\Http\Requests\News\CreateKindNewsRequest;
+use App\Http\Requests\News\UpdateKindNewsRequest;
 use Illuminate\Support\Facades\Session;
 
 
@@ -18,9 +20,10 @@ class KindNewController extends Controller
      */
     public function index()
     {
+        $categoryNews = NewCategory::get();
         $kindNews = KindNew::with('categoryNews')->orderByDesc('id')->paginate(10);
         $title = 'Danh sách loại tin tức';
-        return view('admin.news.kindNews.list', compact('title', 'kindNews'));
+        return view('admin.news.kindNews.list', compact('title', 'kindNews', 'categoryNews'));
     }
 
     /**
@@ -41,7 +44,7 @@ class KindNewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateKindNewsRequest $request)
     {
         try {
             KindNew::create($request->all());
@@ -49,8 +52,7 @@ class KindNewController extends Controller
         } catch (\Exception $err) {
             Session::flash('error', 'Có lỗi trong quá trình thêm loại tin tức, bạn thử lại sau');
         }
-
-        return redirect()->back();
+        return redirect()->route('listKindNew');
     }
 
     /**
@@ -84,7 +86,7 @@ class KindNewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, KindNew $kindnew)
+    public function update(UpdateKindNewsRequest $request, KindNew $kindnew)
     {
         try {
             $kindnew->name = $request->name;

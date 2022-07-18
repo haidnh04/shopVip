@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Tên slide</label>
+                        <label>Tên slide <span style="color: red">*</span></label>
                         <input type="text" name="name" value="{{ $slider->name }}" class="form-control"
                             placeholder="Tên sản phẩm">
                         @error('name')
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group">
-                <label for="menu">Ảnh Sliders</label>
+                <label for="menu">Ảnh Slide <span style="color: red">*</span></label>
                 <input type="file" name="file" class="form-control" id="upload">
                 <div id="image_show">
                     <a href="{{ $slider->file }}" target="_blank">
@@ -45,7 +45,7 @@
             </div>
 
             <div class="form-group">
-                <label for="menu">Sắp xếp</label>
+                <label for="menu">Sắp xếp <span style="color: red">*</span></label>
                 <input type="number" name="sort_by" class="form-control" placeholder="sắp xếp"
                     value="{{ $slider->sort_by }}">
                 @error('sort_by')
@@ -54,7 +54,7 @@
             </div>
 
             <div class="form-group">
-                <label>Kích hoạt</label>
+                <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active" name="active"
                         {{ $slider->active == 1 ? 'checked=""' : '' }}>
@@ -72,6 +72,9 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Tạo slider</button>
+            <a href="{{ route('listSlider') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+                <p>Quay lại</p>
+            </a>
         </div>
     </form>
 @endsection

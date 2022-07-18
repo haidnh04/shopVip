@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\NewCategory;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\News\CreateCategoryNewsRequest;
+use App\Http\Requests\News\UpdateCategoryNewsRequest;
 
 class CategoryNewController extends Controller
 {
@@ -18,7 +20,9 @@ class CategoryNewController extends Controller
     {
         $categoryNews = NewCategory::orderByDesc('id')->paginate(10);
         $title = 'Danh sách thể loại tin tức';
+        // if(isset($NewCategory)){
         return view('admin.news.categoryNews.list', compact('title', 'categoryNews'));
+        // }
     }
 
     /**
@@ -39,7 +43,7 @@ class CategoryNewController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryNewsRequest $request)
     {
         try {
             NewCategory::create($request->all());
@@ -47,8 +51,7 @@ class CategoryNewController extends Controller
         } catch (\Exception $err) {
             Session::flash('error', 'Có lỗi trong quá trình thêm thể loại, bạn thử lại sau');
         }
-
-        return redirect()->back();
+        return redirect()->route('listCategoryNew');
     }
 
     /**
@@ -82,7 +85,7 @@ class CategoryNewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NewCategory $categorynew)
+    public function update(UpdateCategoryNewsRequest $request, NewCategory $categorynew)
     {
         try {
             $categorynew->name = $request->name;

@@ -1,4 +1,4 @@
-@extends('main1')
+@extends('main')
 
 @section('content')
     {{-- <meta charset="utf-8">
@@ -21,11 +21,11 @@
         <div class="row main-left">
             <div class="col-md-3 ">
                 <ul class="list-group" id="menu">
-                    <li href="#" class="list-group-item menu1 active">
+                    <li href="#" class="list-group-item MenuUsers active">
                         Menu
                     </li>
 
-                    <li href="#" class="list-group-item menu1">
+                    <li href="#" class="list-group-item MenuUsers">
                         Level 1
                     </li>
                     <ul style="display: none;">
@@ -43,7 +43,7 @@
                         </li>
                     </ul>
 
-                    <li href="#" class="list-group-item menu1">
+                    <li href="#" class="list-group-item MenuUsers">
                         <a href="#">Level 1</a>
                     </li>
                     <ul style="display: none;">
@@ -62,7 +62,7 @@
                     </ul>
 
 
-                    <li href="#" class="list-group-item menu1">
+                    <li href="#" class="list-group-item MenuUsers">
                         <a href="#">Level 1</a>
                     </li>
 
@@ -82,7 +82,7 @@
                     </ul>
 
 
-                    <li href="#" class="list-group-item menu1">
+                    <li href="#" class="list-group-item MenuUsers">
                         <a href="#">Level 1</a>
                     </li>
                     <ul style="display: none;">
@@ -100,10 +100,10 @@
                         </li>
                     </ul>
 
-                    <li href="#" class="list-group-item menu1">
+                    <li href="#" class="list-group-item MenuUsers">
                         <a href="#">Level 1</a>
                     </li>
-                    <li href="#" class="list-group-item menu1">
+                    <li href="#" class="list-group-item MenuUsers">
                         <a href="#">Level 1</a>
                     </li>
                 </ul>

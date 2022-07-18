@@ -7,7 +7,7 @@
         <div class="card-body">
             @csrf
             <div class="form-group">
-                <label for="menu">Tên thành viên</label>
+                <label for="menu">Tên thành viên <span style="color: red">*</span></label>
                 <input type="text" name="name" value="{{ old('name') }}" class="form-control"
                     placeholder="Tên thành viên">
                 @error('name')
@@ -16,7 +16,7 @@
             </div>
 
             <div class="form-group">
-                <label for="menu">Email</label>
+                <label for="menu">Email <span style="color: red">*</span></label>
                 <input type="text" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
                 @error('email')
                     <span style="color:red;">{{ $message }}</span>
@@ -24,8 +24,17 @@
             </div>
 
             <div class="form-group">
-                <label for="menu">Mật khẩu</label>
-                <input type="password" name="password" value="" class="form-control" placeholder="mật khẩu">
+                <label for="menu">Mật khẩu <span style="color: red">*</span></label>
+                <input type="password" name="password" value="" class="form-control" placeholder="Mật khẩu">
+                @error('password')
+                    <span style="color:red;">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="menu">Xác nhận mật khẩu <span style="color: red">*</span></label>
+                <input type="password" name="password_confirmation" value="" class="form-control"
+                    placeholder="Xác nhận mật khẩu">
                 @error('password')
                     <span style="color:red;">{{ $message }}</span>
                 @enderror
@@ -33,9 +42,10 @@
 
             <div class="form-group">
                 <fieldset id="group1">
-                    <label>Vai trò</label>
+                    <label>Vai trò <span style="color: red">*</span></label>
                     <div class="custom-control custom-radio">
-                        <input class="custom-control-input" value="1" type="radio" id="active" name="role" checked="">
+                        <input class="custom-control-input" value="1" type="radio" id="active" name="role"
+                            checked="">
                         <label for="active" class="custom-control-label">Admin</label>
                     </div>
                     <div class="custom-control custom-radio">
@@ -47,9 +57,10 @@
 
             <div class="form-group">
                 <fieldset id="group2">
-                    <label>Kích hoạt</label>
+                    <label>Kích hoạt <span style="color: red">*</span></label>
                     <div class="custom-control custom-radio">
-                        <input class="custom-control-input" value="1" type="radio" id="active1" name="status" checked="">
+                        <input class="custom-control-input" value="1" type="radio" id="active1" name="status"
+                            checked="">
                         <label for="active1" class="custom-control-label">Có</label>
                     </div>
                     <div class="custom-control custom-radio">
@@ -64,6 +75,9 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Tạo thành viên</button>
+            <a href="{{ route('listUser') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+                <p>Quay lại</p>
+            </a>
         </div>
     </form>
 @endsection

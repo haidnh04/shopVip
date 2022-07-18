@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Menu\CreateFormRequest;
+use App\Http\Requests\Menu\CreateFormMenuRequest;
+use App\Http\Requests\Menu\UpdateFormMenuRequest;
 use Illuminate\Http\Request;
 use App\Http\Services\Menu\MenuService;
 use Illuminate\Http\JsonResponse;
@@ -27,10 +28,10 @@ class MenuController extends Controller
     }
 
     //Thực hiện thêm danh mục (truyền qua bên MenuService thao tác)
-    public function store(CreateFormRequest $request)
+    public function store(CreateFormMenuRequest $request)
     {
         $this->menuService->create($request);
-        return redirect()->route('createMenu')->with('msg', 'Tạo danh mục thành công');
+        return redirect()->route('listMenu');
     }
 
     // Danh sách các danh mục (truyền qua bên MenuService thao tác)
@@ -38,7 +39,8 @@ class MenuController extends Controller
     {
         $title = "Danh sách danh mục";
         $menus = $this->menuService->getAll();
-        return view('admin.menus.list', compact('title', 'menus'));
+        $menuParent = $this->menuService->getParent();
+        return view('admin.menus.list', compact('title', 'menus', 'menuParent'));
     }
 
     //Form để sửa các danh mục (thao tác ở dưới luôn) 
@@ -46,16 +48,15 @@ class MenuController extends Controller
     public function show(Menu $menu)
     {
         $title = 'Cập nhật danh mục: ' . $menu->name;
-        $menus = $this->menuService->getAll();
+        $menus = $this->menuService->getParent();
         return view('admin.menus.edit', compact('title', 'menu', 'menus'));
     }
 
     //Thực hiện sửa danh mục (truyền qua bên MenuService thao tác)
-    public function update(Menu $menu, Request $request)
+    public function update(UpdateFormMenuRequest $request, Menu $menu)
     {
-        $abc = $this->menuService->update($request, $menu);
-        // dd($abc);
-        return redirect()->route('listMenu')->with('msg', 'Sửa danh mục thành công');
+        $this->menuService->update($request, $menu);
+        return redirect()->route('listMenu');
     }
 
     //Xóa các danh mục (truyền qua bên MenuService thao tác

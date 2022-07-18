@@ -8,7 +8,7 @@
             @csrf
 
             <div class="form-group">
-                <label>Tên thể loại tin tức</label>
+                <label>Tên thể loại tin tức <span style="color: red">*</span></label>
                 <input type="text" name="name" value="{{ $categorynew->name }}" class="form-control"
                     placeholder="Tên sản phẩm">
                 @error('name')
@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group">
-                <label>Kích hoạt</label>
+                <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active" name="active"
                         {{ $categorynew->active == 1 ? 'checked=""' : '' }}>
@@ -31,6 +31,9 @@
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Cập nhật thể loại tin</button>
+                    <a href="{{ route('listCategoryNew') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+                        <p>Quay lại</p>
+                    </a>
                 </div>
             </div>
     </form>
