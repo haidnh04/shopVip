@@ -66,7 +66,7 @@ Route::prefix('admin')->group(function () {
 
             Route::delete('destroy', [UserController::class, 'destroy']);
 
-            Route::get('export', [UserController::class, 'exportUsers'])->name('exportUser');
+            Route::post('export', [UserController::class, 'exportUsers'])->name('exportUser');
             Route::get('changeStatus', [UserController::class, 'changeStatus']);
             Route::get('changeRoles', [UserController::class, 'changeRoles']);
 

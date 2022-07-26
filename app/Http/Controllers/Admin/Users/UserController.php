@@ -12,6 +12,9 @@ use Illuminate\Http\JsonResponse;
 use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 
+use Illuminate\Support\Facades\Log;
+
+
 class UserController extends Controller
 {
     protected $userService;
@@ -21,9 +24,10 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function exportUsers() 
+    public function exportUsers(Request $request) 
     {
-        return Excel::download(new UsersExport, 'DSThanhVien.xlsx');
+        Log::debug($request->all());
+        return Excel::download(new UsersExport($request->start, $request->end), 'DSThanhVien.xlsx');
     }
 
     public function index()

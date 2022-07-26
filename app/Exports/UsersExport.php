@@ -19,23 +19,38 @@ use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Style;
 use PhpOffice\PhpSpreadsheet\Style\Color;
 
+use Illuminate\Support\Facades\Log;
+
 
 class UsersExport implements FromCollection, WithHeadings, WithColumnWidths, WithStyles
 {
     /**
-    * @return \Illuminate\Support\Collection
-    */
+     * @return \Illuminate\Support\Collection
+     */
+
+    protected $start;
+    protected $end;
+
+    function __construct($start, $end)
+    {
+        $this->start = $start;
+        $this->end = $end;
+    }
 
     //Lấy ra các cột trong db để thêm vào cột trong excel của bảng users
     public function collection()
     {
-        return User::select('id', 'name', 'email' , 'role', 'status', 'created_at', 'updated_at')
-            ->orderByDesc('created_at')->get();
+        Log::debug($this->start);
+        $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
+            ->orderByDesc('created_at')->whereBetween('created_at', [$this->start, $this->end])->get();
+
+        return $users;
     }
 
     //Thêm hàng tiêu đề cho bảng
-    public function headings() :array {
-    	return ["STT", "Tên tài khoản", "Email", "Vai trò", "Trạng thái","Ngày tạo","Ngày cập nhật"];
+    public function headings(): array
+    {
+        return ["STT", "Tên tài khoản", "Email", "Vai trò", "Trạng thái", "Ngày tạo", "Ngày cập nhật"];
     }
 
     // public function map($users): array
@@ -60,7 +75,7 @@ class UsersExport implements FromCollection, WithHeadings, WithColumnWidths, Wit
             'A' => 5,
             'B' => 30,
             'C' => 30,
-            'D' => 10,            
+            'D' => 10,
             'E' => 10,
             'F' => 30,
             'G' => 30
@@ -80,10 +95,10 @@ class UsersExport implements FromCollection, WithHeadings, WithColumnWidths, Wit
     // {
     //     // Return RGB color code.
     //     return 'FFFF00';
-    
+
     //     // Return a Color instance. The fill type will automatically be set to "solid"
     //     return new Color(Color::COLOR_YELLOW);
-    
+
     //     // Or return the styles array
     //     return [
     //          'fillType'   => Fill::FILL_GRADIENT_LINEAR,
@@ -96,7 +111,7 @@ class UsersExport implements FromCollection, WithHeadings, WithColumnWidths, Wit
     // {
     //     // Configure the default styles
     //     return $defaultStyle->getFill()->setFillType(Fill::FILL_SOLID);
-    
+
     //     // Or return the styles array
     //     return [
     //         'fill' => [

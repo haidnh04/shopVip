@@ -92,5 +92,7 @@
 <script src="/template/admin/plugins/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 {{-- nút button slider nằm ở template/admin/js/main.js --}}
 
+<script src="//momentjs.com/downloads/moment.min.js"></script>
+
 
 @yield('footer')
