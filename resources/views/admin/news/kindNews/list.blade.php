@@ -20,7 +20,9 @@
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $kindNew->name }}</td>
                     <td>{{ $kindNew->categoryNews->name }}</td>
-                    <td>{!! \App\Helpers\Helper::active($kindNew->active) !!}</td>
+                    <td><input data-id="{{ $kindNew->id }}" class="toggle-class-kindNew" type="checkbox" data-onstyle="success"
+                            data-offstyle="danger" data-toggle="toggle" data-on="Có" data-off="Không"
+                            {{ $kindNew->active ? 'checked' : '' }}></td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($kindNew->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($kindNew->updated_at) !!}</td>
                     <td>
@@ -29,21 +31,21 @@
                         </a>
                     </td>
                     <td>
-                        @if(!empty($kindNew->id))
+                        @if (!empty($kindNew->id))
                             <a href="#" class="btn btn-danger btn-sm"
-                            onclick="removeRow({{ $kindNew->id }}, '/admin/kindnew/destroy')">
-                            <i class="fas fa-trash"></i>
+                                onclick="removeRow({{ $kindNew->id }}, '/admin/kindnew/destroy')">
+                                <i class="fas fa-trash"></i>
                             </a>
-                        @endif   
-                        
+                        @endif
+
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    @if(!empty($kindNew->link))
+    @if (!empty($kindNew->link))
         {!! $kindNew->link !!}
-    @endif 
+    @endif
 
     <div class="card-footer">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
@@ -66,13 +68,13 @@
                     <div class="modal-body">
                         <div class="card-body">
                             @csrf
-                
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="menu">Tên loại tin tức <span style="color: red">*</span></label>
-                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control"
-                                            placeholder="Tên loại tin tức">
+                                        <input type="text" name="name" value="{{ old('name') }}"
+                                            class="form-control" placeholder="Tên loại tin tức">
                                         @error('name')
                                             <span style="color:red;">{{ $message }}</span>
                                         @enderror
@@ -91,19 +93,21 @@
                                     </div>
                                 </div>
                             </div>
-                
+
                             <div class="form-group">
                                 <label>Kích hoạt <span style="color: red">*</span></label>
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" value="1" type="radio" id="active" name="active" checked="">
+                                    <input class="custom-control-input" value="1" type="radio" id="active"
+                                        name="active" checked="">
                                     <label for="active" class="custom-control-label">Có</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" value="0" type="radio" id="no_active" name="active">
+                                    <input class="custom-control-input" value="0" type="radio" id="no_active"
+                                        name="active">
                                     <label for="no_active" class="custom-control-label">Không</label>
                                 </div>
                             </div>
-                
+
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -114,7 +118,7 @@
             </div>
         </div>
     </div>
-    
+
     {{-- <div class="card-footer">
         <a href="{{ route('createKindNew') }}" class="btn btn-primary" style="width:140px; text-align:center; height: 40px">
             <p>Thêm loại tin</p>

@@ -34,6 +34,22 @@ class UserController extends Controller
         return view('admin.users.list', compact('title', 'users'));
     }
 
+    public function changeStatus(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->status = $request->status;
+        $user->save();
+        return redirect()->route('listUser');
+    }
+
+    public function changeRoles(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $user->role = $request->role;
+        $user->save();
+        return redirect()->route('listUser');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

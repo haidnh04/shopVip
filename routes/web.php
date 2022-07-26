@@ -67,6 +67,9 @@ Route::prefix('admin')->group(function () {
             Route::delete('destroy', [UserController::class, 'destroy']);
 
             Route::get('export', [UserController::class, 'exportUsers'])->name('exportUser');
+            Route::get('changeStatus', [UserController::class, 'changeStatus']);
+            Route::get('changeRoles', [UserController::class, 'changeRoles']);
+
         });
 
 
@@ -95,6 +98,8 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{menu}', [MenuController::class, 'update']);
 
             Route::delete('destroy', [MenuController::class, 'destroy']);
+            // Route::get('changeActive', [MenuController::class, 'changeActive']);
+
             //Route::get('edit/{id}', [MenuController::class, 'create'])->name('editMenu');
         });
 
@@ -109,6 +114,7 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{product}', [ProductController::class, 'update']);
 
             Route::delete('destroy', [ProductController::class, 'destroy']);
+            Route::get('changeActive', [ProductController::class, 'changeActive']);
         });
 
         //Trang Category News (Thể loại tin tức)
@@ -122,6 +128,7 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{categorynew}', [CategoryNewController::class, 'update']);
 
             Route::delete('destroy', [CategoryNewController::class, 'destroy']);
+            Route::get('changeActive', [CategoryNewController::class, 'changeActive']);
         });
 
         //Trang kind News (Loại tin tức)
@@ -135,6 +142,8 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{kindnew}', [KindNewController::class, 'update']);
 
             Route::delete('destroy', [KindNewController::class, 'destroy']);
+            Route::get('changeActive', [KindNewController::class, 'changeActive']);
+
         });
 
         //Trang News (Tin tức)
@@ -149,6 +158,8 @@ Route::prefix('admin')->group(function () {
 
             Route::delete('destroy', [NewController::class, 'destroy']);
             Route::delete('destroy1', [NewController::class, 'destroy1']);
+            Route::get('changeActive', [NewController::class, 'changeActive']);
+            Route::get('changeHightlight', [NewController::class, 'changeHightlight']);
         });
 
         //Trang ajax loại tin tức
@@ -167,6 +178,7 @@ Route::prefix('admin')->group(function () {
             Route::post('edit/{slider}', [SliderController::class, 'update'])->name('updateSlider');
 
             Route::delete('destroy', [SliderController::class, 'destroy']);
+            Route::get('changeActive', [SliderController::class, 'changeActive']);
         });
 
         //Trang upload ảnh

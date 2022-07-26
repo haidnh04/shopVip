@@ -144,6 +144,47 @@
                 @enderror
             </div>
 
+            <div class="form-group">
+                <label for="menu">Ảnh bổ xung 1 <span style="color: red">*</span></label>
+                <input type="file" name="file_num2" class="form-control" id="upload1">
+                <div id="image_show1">
+                    <a href="{{ $product->file_num2 }}" target="_blank">
+                        <img src="{{ $product->file_num2 }}" width="200px">
+                    </a>
+                </div>
+                <input type="hidden" name="file_num2" id="file_num2" value="{{ $product->file_num2 }}">
+                @error('file_num2')
+                    <span style="color:red;">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="menu">Ảnh bổ xung 2 <span style="color: red">*</span></label>
+                <input type="file" name="file_num3" class="form-control" id="upload2">
+                <div id="image_show2">
+                    <a href="{{ $product->file_num3 }}" target="_blank">
+                        <img src="{{ $product->file_num3 }}" width="200px">
+                    </a>
+                </div>
+                <input type="hidden" name="file_num3" id="file_num3" value="{{ $product->file_num3 }}">
+                @error('file_num3')
+                    <span style="color:red;">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
+                <label for="menu">Ảnh bổ xung 3 <span style="color: red">*</span></label>
+                <input type="file" name="file_num4" class="form-control" id="upload3">
+                <div id="image_show3">
+                    <a href="{{ $product->file_num4 }}" target="_blank">
+                        <img src="{{ $product->file_num4 }}" width="200px">
+                    </a>
+                </div>
+                <input type="hidden" name="file_num4" id="file_num4" value="{{ $product->file_num4 }}">
+                @error('file_num4')
+                    <span style="color:red;">{{ $message }}</span>
+                @enderror
+            </div>
 
             <div class="form-group">
                 <label>Kích hoạt <span style="color: red">*</span></label>

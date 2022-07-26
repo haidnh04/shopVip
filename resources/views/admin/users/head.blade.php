@@ -7,6 +7,7 @@
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <!-- Font Awesome -->
+<link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="/template/admin/plugins/fontawesome-free/css/all.min.css">
 <!-- icheck bootstrap -->
 <link rel="stylesheet" href="/template/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
@@ -18,82 +19,180 @@
 {{-- vue css --}}
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-{{-- date time picker --}}
-{{-- <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/daterangepicker/daterangepicker.css" >
-<link rel="stylesheet" href="/template/admin/plugins/daterangepicker/daterangepicker.css">
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/> --}}
-
-{{-- Bootstrap --}}
-{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<!-- Toastr -->
+<link rel="stylesheet" href="/template/admin/plugins/toastr/toastr.min.css">
 <style>
-    .nav-pills .nav-link.active,
-    .nav-pills .show>.nav-link {
-        background-color: white;
+    /* toastr */
+    #toast-container>.toast {
+        background-image: none !important;
     }
 
-    .dropdown-menu {
-        top: 60px;
-        right: 0px;
-        left: unset;
-        width: 460px;
-        box-shadow: 0px 5px 7px -1px #c1c1c1;
-        padding-bottom: 0px;
-        padding: 0px;
+    #toast-container>.toast:before {
+        position: fixed;
+        font-family: FontAwesome;
+        font-size: 24px;
+        line-height: 18px;
+        float: left;
+        color: #FFF;
+        padding-right: 0.5em;
+        margin: auto 0.5em auto -1.5em;
     }
 
-    .dropdown-menu:before {
-        content: "";
-        position: absolute;
-        top: -20px;
-        right: 12px;
-        border: 10px solid #343A40;
-        border-color: transparent transparent #343A40 transparent;
+    #toast-container>.toast-warning:before {
+        content: "\f003";
     }
 
-    .head {
-        padding: 5px 15px;
-        border-radius: 3px 3px 0px 0px;
+    #toast-container>.toast-error:before {
+        content: "\f001";
     }
 
-    .footer {
-        padding: 5px 15px;
-        border-radius: 0px 0px 3px 3px;
+    #toast-container>.toast-info:before {
+        content: "\f005";
     }
 
-    .notification-box {
-        padding: 10px 0px;
+    #toast-container>.toast-success:before {
+        content: "\f002";
+    }
+</style>
+
+{{-- Bootstrap toogle --}}
+<link rel="stylesheet" href="/template/admin/plugins/bootstrap-toggle/bootstrap-toggle.min.css">
+<style>
+    /*!
+                                                     * Bootstrap v3.3.7 (http://getbootstrap.com)
+                                                     * Copyright 2011-2016 Twitter, Inc.
+                                                     * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+                                                     */
+    /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+    .btn-default {
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc
     }
 
-    .bg-gray {
-        background-color: #eee;
+    .btn-default.focus,
+    .btn-default:focus {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #8c8c8c
     }
 
-    @media (max-width: 640px) {
-        .dropdown-menu {
-            top: 50px;
-            left: -16px;
-            width: 290px;
-        }
-
-        .nav {
-            display: block;
-        }
-
-        .nav .nav-item,
-        .nav .nav-item a {
-            padding-left: 0px;
-        }
-
-        .message {
-            font-size: 13px;
-        }
+    .btn-default:hover {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad
     }
-</style> --}}
+
+    .btn-default.active,
+    .btn-default:active,
+    .open>.dropdown-toggle.btn-default {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad
+    }
+
+    .btn-default.active.focus,
+    .btn-default.active:focus,
+    .btn-default.active:hover,
+    .btn-default:active.focus,
+    .btn-default:active:focus,
+    .btn-default:active:hover,
+    .open>.dropdown-toggle.btn-default.focus,
+    .open>.dropdown-toggle.btn-default:focus,
+    .open>.dropdown-toggle.btn-default:hover {
+        color: #333;
+        background-color: #d4d4d4;
+        border-color: #8c8c8c
+    }
+
+    .btn-default.active,
+    .btn-default:active,
+    .open>.dropdown-toggle.btn-default {
+        background-image: none
+    }
+
+    .btn-default.disabled.focus,
+    .btn-default.disabled:focus,
+    .btn-default.disabled:hover,
+    .btn-default[disabled].focus,
+    .btn-default[disabled]:focus,
+    .btn-default[disabled]:hover,
+    fieldset[disabled] .btn-default.focus,
+    fieldset[disabled] .btn-default:focus,
+    fieldset[disabled] .btn-default:hover {
+        background-color: #fff;
+        border-color: #ccc
+    }
+
+    .btn-default .badge {
+        color: #fff;
+        background-color: #333
+    }
+
+    .btn-success {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #4cae4c
+    }
+
+    .btn-success.focus,
+    .btn-success:focus {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #255625
+    }
+
+    .btn-success:hover {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #398439
+    }
+
+    .btn-success.active,
+    .btn-success:active,
+    .open>.dropdown-toggle.btn-success {
+        color: #fff;
+        background-color: #449d44;
+        border-color: #398439
+    }
+
+    .btn-success.active.focus,
+    .btn-success.active:focus,
+    .btn-success.active:hover,
+    .btn-success:active.focus,
+    .btn-success:active:focus,
+    .btn-success:active:hover,
+    .open>.dropdown-toggle.btn-success.focus,
+    .open>.dropdown-toggle.btn-success:focus,
+    .open>.dropdown-toggle.btn-success:hover {
+        color: #fff;
+        background-color: #398439;
+        border-color: #255625
+    }
+
+    .btn-success.active,
+    .btn-success:active,
+    .open>.dropdown-toggle.btn-success {
+        background-image: none
+    }
+
+    .btn-success.disabled.focus,
+    .btn-success.disabled:focus,
+    .btn-success.disabled:hover,
+    .btn-success[disabled].focus,
+    .btn-success[disabled]:focus,
+    .btn-success[disabled]:hover,
+    fieldset[disabled] .btn-success.focus,
+    fieldset[disabled] .btn-success:focus,
+    fieldset[disabled] .btn-success:hover {
+        background-color: #5cb85c;
+        border-color: #4cae4c
+    }
+
+    .btn-success .badge {
+        color: #5cb85c;
+        background-color: #fff
+    }
+</style>
+
 @yield('head')

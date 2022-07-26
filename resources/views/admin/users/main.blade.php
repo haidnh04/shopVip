@@ -33,43 +33,43 @@
                         <nav class="navbar navbar-expand-lg bg-info rounded">
                             <div class="collapse navbar-collapse" id="navbarSupportedContent"
                                 style="display: unset !important;"> --}}
-            <ul class="nav nav-pills mr-auto justify-content-end">
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-light" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="far fa-bell" style="color:#007bff;"></i>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="head text-light bg-dark">
-                            <div class="row">
-                                <div class="col-lg-12 col-sm-12 col-12">
-                                    <span>Notifications (3)</span>
-                                    <a href="" class="float-right text-light">Mark all as
-                                        read</a>
-                                </div>
-                        </li>
-                        <li class="notification-box">
-                            <div class="row">
-                                {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            <div style="float:right;">
+                <ul class="nav nav-pills mr-auto justify-content-end">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-light" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="far fa-bell" style="color:#007bff;"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="head text-light bg-dark">
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-12">
+                                        <span>Thông báo (3)</span>
+                                        <a href="" class="float-right text-light">Đánh dấu đã đọc tất cả</a>
+                                    </div>
+                            </li>
+                            <li class="notification-box">
+                                <div class="row">
+                                    {{-- <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Notification<span class="caret"></span>
                                 </a> --}}
-                                <div class="col-lg-8 col-sm-8 col-8">
-                                    abc
-                                    @foreach (Auth::user()->notifications as $notification)
-                                        <a class="dropdown-item" href="#">
-                                            <span>{{ $notification->data['title'] }}</span><br>
-                                            <small>{{ $notification->data['content'] }}</small>
-                                        </a>
-                                    @endforeach
+                                    <div class="col-lg-8 col-sm-8 col-8">
+                                        @foreach (Auth::user()->notifications as $notification)
+                                            <a class="dropdown-item" href="#">
+                                                <span>{{ $notification->data['title'] }}</span><br>
+                                                <small>{{ $notification->data['content'] }}</small>
+                                            </a>
+                                        @endforeach
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="footer bg-dark text-center">
-                            <a href="" class="text-light">View All</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+                            </li>
+                            <li class="footer bg-dark text-center">
+                                <a href="" class="text-light">Xem tất cả</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
             {{-- </div>
                         </nav>
@@ -134,8 +134,8 @@
             <div class="float-right d-none d-sm-block">
                 <b>Version</b> 3.2.0
             </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
+            {{-- <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            reserved. --}}
         </footer>
 
     </div>

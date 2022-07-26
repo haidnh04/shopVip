@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Notifications\Notifications;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 
 class SendNotificationController extends Controller
@@ -22,7 +23,6 @@ class SendNotificationController extends Controller
             'content',
         ]);
         $user->notify(new Notifications($data));
-
         return view('notification');
     }
 }

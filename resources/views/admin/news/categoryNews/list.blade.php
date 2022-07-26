@@ -18,7 +18,9 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $categoryNew->name }}</td>
-                    <td>{!! \App\Helpers\Helper::active($categoryNew->active) !!}</td>
+                    <td><input data-id="{{ $categoryNew->id }}" class="toggle-class-categoryNew" type="checkbox" data-onstyle="success"
+                            data-offstyle="danger" data-toggle="toggle" data-on="Có" data-off="Không"
+                            {{ $categoryNew->active ? 'checked' : '' }}></td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($categoryNew->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($categoryNew->updated_at) !!}</td>
                     <td>
@@ -64,7 +66,7 @@
                     <div class="modal-body">
                         <div class="card-body">
                             @csrf
-                
+
                             <div class="form-group">
                                 <label>Tên thể loại tin tức <span style="color: red">*</span></label>
                                 <input type="text" name="name" value="{{ old('name') }}" class="form-control"
@@ -73,16 +75,17 @@
                                     <span style="color:red;">{{ $message }}</span>
                                 @enderror
                             </div>
-                
+
                             <div class="form-group">
                                 <label>Kích hoạt <span style="color: red">*</span></label>
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" value="1" type="radio" id="active" name="active"
-                                        checked="">
+                                    <input class="custom-control-input" value="1" type="radio" id="active"
+                                        name="active" checked="">
                                     <label for="active" class="custom-control-label">Có</label>
                                 </div>
                                 <div class="custom-control custom-radio">
-                                    <input class="custom-control-input" value="0" type="radio" id="no_active" name="active">
+                                    <input class="custom-control-input" value="0" type="radio" id="no_active"
+                                        name="active">
                                     <label for="no_active" class="custom-control-label">Không</label>
                                 </div>
                             </div>

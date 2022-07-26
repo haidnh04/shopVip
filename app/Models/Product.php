@@ -24,6 +24,9 @@ class Product extends Model
         'color',
         'size',
         'active',
+        'file_num2',
+        'file_num3',
+        'file_num4',
     ];
 
     public function menu()

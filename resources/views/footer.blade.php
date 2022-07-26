@@ -328,6 +328,7 @@
 <script src="/template/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
 <script src="/template/vendor/slick/slick.min.js"></script>
+{{-- <script src="/template/vendor/slick/slick.js"></script> --}}
 <script src="/template/js/slick-custom.js"></script>
 <!--===============================================================================================-->
 <script src="/template/vendor/parallax100/parallax100.js"></script>

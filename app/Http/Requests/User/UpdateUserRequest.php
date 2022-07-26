@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
             //Nhập tên ít nhất 5 ký tự và phải nhập
             'name' => 'required|min:5',
             //Nhập email phải có và nhập đúng định dạng
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email',
             'password' => 'nullable|confirmed|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\x])(?=.*[!$#%@()^*]).*$/|min:6',
         ];
     }
@@ -38,7 +38,7 @@ class UpdateUserRequest extends FormRequest
             'name.required' => 'Họ và tên bắt buộc phải nhập',
             'name.min' => 'Họ vè tên phải từ :min ký tự trở lên',
 
-            'email.required' => 'Email bắt buộc phải nhập',
+            // 'email.required' => 'Email bắt buộc phải nhập',
             'email.email' => 'Email không đúng định dạng',
             'email.unique' => 'Email đã tồn tại trên hệ thống',
 

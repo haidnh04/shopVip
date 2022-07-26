@@ -26,6 +26,14 @@ class KindNewController extends Controller
         return view('admin.news.kindNews.list', compact('title', 'kindNews', 'categoryNews'));
     }
 
+    public function changeActive(Request $request)
+    {
+        $user = KindNew::find($request->kindNew_id);
+        $user->active = $request->active;
+        $user->save();
+        return redirect()->route('listKindNew');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

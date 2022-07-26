@@ -35,23 +35,25 @@ class NewUsersController extends Controller
     {
         $title = 'Tin tức';
         $news = NNew::find($id);
-        $highlightNews = NNew::where('hightlight', 1)->take(4)->get();
-        $moreNews = NNew::where('kind_id', $news->kind_id)->take(4)->get();
+        $highlightNews = NNew::where('hightlight', 1)->where('active', 1)->take(4)->get();
+        $moreNews = NNew::where('kind_id', $news->kind_id)->where('id', '!=', $id)
+        ->where('active', 1)->take(4)->get();
         return view('news.news', compact('title', 'news', 'highlightNews', 'moreNews'));
     }
 
     public function postComment($id, Request $request)
     {
-        try {
-            $idtintuc = $id;
-            $comment = new Comment;
-            $comment->new_id = $idtintuc;
-            $comment->name = $request->name;
-            $comment->content = $request->content;
-            $comment->save();
-        } catch (\Exception $err) {
-            dd($id);
-        }
+        // try {
+        $idtintuc = $id;
+        $comment = new Comment;
+        $comment->new_id = $idtintuc;
+        $comment->name = $request->name;
+        $comment->content = $request->content;
+        $comment->active = 1;
+        $comment->save();
+        // } catch (\Exception $err) {
+        //     dd($id);
+        // }
 
         return redirect("/news/$id");
     }

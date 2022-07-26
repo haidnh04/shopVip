@@ -43,6 +43,14 @@ class MenuController extends Controller
         return view('admin.menus.list', compact('title', 'menus', 'menuParent'));
     }
 
+    // public function changeActive(Request $request)
+    // {
+    //     $user = Menu::find($request->menu_id);
+    //     $user->active = $request->active;
+    //     $user->save();
+    //     return redirect()->route('listMenu');
+    // }
+
     //Form để sửa các danh mục (thao tác ở dưới luôn) 
     //-> gần như index truyền thêm id để lấy đúng sp theo id đó
     public function show(Menu $menu)

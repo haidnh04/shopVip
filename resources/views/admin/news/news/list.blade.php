@@ -1,5 +1,7 @@
 @extends('admin.users.main')
-
+@section('head')
+    <script src="/ckeditor/ckeditor.js"></script>
+@endsection
 @section('content')
     <table class="table table-bordered">
         <thead>
@@ -30,9 +32,14 @@
                     </td>
                     <td>{{ $new->kindNews->categoryNews->name }}</td>
                     <td>{{ $new->kindNews->name }}</td>
-                    <td>{!! \App\Helpers\Helper::active($new->hightlight) !!}</td>
+                    <td><input data-id="{{ $new->id }}" class="toggle-class-news" type="checkbox" data-onstyle="success"
+                            data-offstyle="danger" data-toggle="toggle" data-on="Có" data-off="Không"
+                            {{ $new->hightlight ? 'checked' : '' }}></td>
                     <td>{{ $new->view }}</td>
-                    <td>{!! \App\Helpers\Helper::active($new->active) !!}</td>
+                    <td><input data-id="{{ $new->id }}" class="toggle-class-news" type="checkbox"
+                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
+                            {{ $new->active ? 'checked' : '' }}></td>
+
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($new->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($new->updated_at) !!}</td>
                     <td>
@@ -64,8 +71,8 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <form action="{{ route('storeNew') }}" method="POST">
@@ -176,6 +183,15 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor 4
+        // instance, using default configuration.
+        CKEDITOR.replace('content');
+        CKEDITOR.replace('sumary');
+    </script>
 @endsection
 
 @section('script11')

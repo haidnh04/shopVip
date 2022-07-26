@@ -25,6 +25,14 @@ class CategoryNewController extends Controller
         // }
     }
 
+    public function changeActive(Request $request)
+    {
+        $user = NewCategory::find($request->categoryNew_id);
+        $user->active = $request->active;
+        $user->save();
+        return redirect()->route('listCategoryNew');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

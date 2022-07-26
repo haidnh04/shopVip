@@ -33,6 +33,14 @@ class ProductController extends Controller
         return view('admin.products.list', compact('title', 'products', 'menus'));
     }
 
+    public function changeActive(Request $request)
+    {
+        $user = Product::find($request->product_id);
+        $user->active = $request->active;
+        $user->save();
+        return redirect()->route('listProduct');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

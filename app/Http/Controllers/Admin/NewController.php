@@ -29,7 +29,36 @@ class NewController extends Controller
         $title = 'Danh sách tin tức';
         $categoryNews = NewCategory::get();
         $kindNews = KindNew::get();
-        return view('admin.news.news.list', compact('title', 'news','categoryNews','kindNews'));
+        return view('admin.news.news.list', compact('title', 'news', 'categoryNews', 'kindNews'));
+    }
+
+    public function changeActive(Request $request)
+    {
+        $user = NNew::find($request->news_id);
+        $user->active = $request->active;
+        $user->save();
+        return redirect()->route('listNew');
+    }
+
+
+    public function changeHightlight(Request $request)
+    {
+        $user = NNew::find($request->news_id);
+        $user->hightlight = $request->hightlight;
+        $user->save();
+        return redirect()->route('listNew');
+    }
+
+    public function nNewCount(NNew $nnews)
+    {
+        $Key = 'blog' . $nnews->id;
+        if (Session::has($Key)) {
+            DB::table('n_news')
+                ->where('id', $nnews->id)
+                ->increment('view', 1);
+            Session::put($Key, 1);
+        }
+        // Write your code which you want
     }
 
     /**

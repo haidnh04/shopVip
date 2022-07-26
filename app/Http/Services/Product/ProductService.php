@@ -19,6 +19,7 @@ class ProductService
             //     $query->offset($page * self::LIMIT);
             // })
             // ->limit(self::LIMIT)
+            ->where('active', 1)
             ->get();
         return $productShows;
     }

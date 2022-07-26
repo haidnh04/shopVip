@@ -9,6 +9,7 @@ use App\Http\Services\Slider\SliderService;
 use App\Models\Slider;
 use App\Http\Requests\Slide\CreateSlideRequest;
 use App\Http\Requests\Slide\UpdateSlideRequest;
+use Illuminate\Support\Facades\Log;
 
 class SliderController extends Controller
 {
@@ -30,6 +31,14 @@ class SliderController extends Controller
         $title = 'Danh sách các Sliders';
         $sliders = $this->sliderService->getAll();
         return view('admin.sliders.list', compact('title', 'sliders', 'slider'));
+    }
+
+    public function changeActive(Request $request)
+    {
+        $user = Slider::find($request->slider_id);
+        $user->active = $request->active;
+        $user->save();
+        return redirect()->route('listSlider');
     }
 
     /**

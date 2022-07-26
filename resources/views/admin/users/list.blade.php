@@ -21,8 +21,12 @@
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
-                    <td>{!! \App\Helpers\Helper::active($user->role) !!}</td>
-                    <td>{!! \App\Helpers\Helper::active($user->status) !!}</td>
+                    <td><input data-id="{{ $user->id }}" class="toggle-class-user-role" type="checkbox" data-onstyle="success"
+                            data-offstyle="danger" data-toggle="toggle" data-on="QTV" data-off="NV"
+                            {{ $user->role ? 'checked' : '' }}></td>
+                    <td><input data-id="{{ $user->id }}" class="toggle-class-user" type="checkbox" data-onstyle="success"
+                            data-offstyle="danger" data-toggle="toggle" data-on="Có" data-off="Không"
+                            {{ $user->status ? 'checked' : '' }}></td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($user->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($user->updated_at) !!}</td>
                     <td>
@@ -75,23 +79,25 @@
                                         <span style="color:red;">{{ $message }}</span>
                                     @enderror
                                 </div>
-                    
+
                                 <div class="form-group">
                                     <label for="menu">Email <span style="color: red">*</span></label>
-                                    <input type="text" name="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
+                                    <input type="text" name="email" value="{{ old('email') }}" class="form-control"
+                                        placeholder="Email">
                                     @error('email')
                                         <span style="color:red;">{{ $message }}</span>
                                     @enderror
                                 </div>
-                    
+
                                 <div class="form-group">
                                     <label for="menu">Mật khẩu <span style="color: red">*</span></label>
-                                    <input type="password" name="password" value="" class="form-control" placeholder="Mật khẩu">
+                                    <input type="password" name="password" value="" class="form-control"
+                                        placeholder="Mật khẩu">
                                     @error('password')
                                         <span style="color:red;">{{ $message }}</span>
                                     @enderror
                                 </div>
-                    
+
                                 <div class="form-group">
                                     <label for="menu">Xác nhận mật khẩu <span style="color: red">*</span></label>
                                     <input type="password" name="password_confirmation" value="" class="form-control"
@@ -100,37 +106,39 @@
                                         <span style="color:red;">{{ $message }}</span>
                                     @enderror
                                 </div>
-                    
+
                                 <div class="form-group">
                                     <fieldset id="group1">
                                         <label>Vai trò <span style="color: red">*</span></label>
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" value="1" type="radio" id="active" name="role"
-                                                checked="">
+                                            <input class="custom-control-input" value="1" type="radio" id="active"
+                                                name="role" checked="">
                                             <label for="active" class="custom-control-label">Admin</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" value="0" type="radio" id="no_active" name="role">
+                                            <input class="custom-control-input" value="0" type="radio"
+                                                id="no_active" name="role">
                                             <label for="no_active" class="custom-control-label">Nhân viên</label>
                                         </div>
                                     </fieldset>
                                 </div>
-                    
+
                                 <div class="form-group">
                                     <fieldset id="group2">
                                         <label>Kích hoạt <span style="color: red">*</span></label>
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" value="1" type="radio" id="active1" name="status"
-                                                checked="">
+                                            <input class="custom-control-input" value="1" type="radio"
+                                                id="active1" name="status" checked="">
                                             <label for="active1" class="custom-control-label">Có</label>
                                         </div>
                                         <div class="custom-control custom-radio">
-                                            <input class="custom-control-input" value="0" type="radio" id="no_active1" name="status">
+                                            <input class="custom-control-input" value="0" type="radio"
+                                                id="no_active1" name="status">
                                             <label for="no_active1" class="custom-control-label">Không</label>
                                         </div>
                                     </fieldset>
                                 </div>
-                    
+
                             </div>
                         </div>
                         <div class="modal-footer">

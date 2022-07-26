@@ -57,20 +57,22 @@
                 <hr>
 
                 <!-- Posted Comments -->
-                @foreach ($news->comment as $cm)
-                    <!-- Comment -->
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="{{ $cm->file }}" alt="">
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">Người đăng: {{ $cm->name }}
-                                <small>{{ $cm->created_at }}</small>
-                            </h4>
-                            {!! $cm->content !!}
+                @if (!empty($news->comment))
+                    @foreach ($news->comment as $cm)
+                        <!-- Comment -->
+                        <div class="media">
+                            <a class="pull-left" href="#">
+                                <img class="media-object" src="{{ $cm->file }}" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h4 class="media-heading">Người đăng: {{ $cm->name }}
+                                    <small>{{ $cm->created_at }}</small>
+                                </h4>
+                                {!! $cm->content !!}
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @endif
                 <br>
             </div>
 
@@ -78,47 +80,51 @@
             <div class="col-md-3">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Tin liên quan</b></div>
+                    <div class="panel-heading"><b>Tin nổi bật</b></div>
                     <div class="panel-body">
-                        @foreach ($highlightNews as $hn)
-                            <!-- item -->
-                            <div class="row" style="margin-top: 10px;">
-                                <div class="col-md-5">
-                                    <a href="/news/{{ $hn->id }}">
-                                        <img class="img-responsive" src="{{ $hn->file }}" alt="">
-                                    </a>
+                        @if (!empty($highlightNews))
+                            @foreach ($highlightNews as $hn)
+                                <!-- item -->
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-md-5">
+                                        <a href="/news/{{ $hn->id }}">
+                                            <img class="img-responsive" src="{{ $hn->file }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <a href="/news/{{ $hn->id }}"><b>{{ $hn->name }}</b></a>
+                                    </div>
+                                    <span style="padding: 15px;">{!! $hn->summary !!}</span>
+                                    <div class="break"></div>
                                 </div>
-                                <div class="col-md-7">
-                                    <a href="/news/{{ $hn->id }}"><b>{{ $hn->name }}</b></a>
-                                </div>
-                                <span style="padding: 15px;">{!! $hn->summary !!}</span>
-                                <div class="break"></div>
-                            </div>
-                            <!-- end item -->
-                        @endforeach
+                                <!-- end item -->
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Tin nổi bật</b></div>
+                    <div class="panel-heading"><b>Tin liên quan</b></div>
                     <div class="panel-body">
-                        @foreach ($moreNews as $mn)
-                            <!-- item -->
-                            <div class="row" style="margin-top: 10px;">
-                                <div class="col-md-5">
-                                    <a href="/news/{{ $hn->id }}">
-                                        <img class="img-responsive" src="{{ $mn->file }}" alt="">
-                                    </a>
+                        @if (!empty($moreNews))
+                            @foreach ($moreNews as $mn)
+                                <!-- item -->
+                                <div class="row" style="margin-top: 10px;">
+                                    <div class="col-md-5">
+                                        <a href="/news/{{ $mn->id }}">
+                                            <img class="img-responsive" src="{{ $mn->file }}" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <a href="/news/{{ $mn->id }}">
+                                            <b>{{ $mn->name }}</b>
+                                        </a>
+                                    </div>
+                                    <span style="padding: 15px;">{!! $mn->summary !!}</span>
+                                    <div class="break"></div>
                                 </div>
-                                <div class="col-md-7">
-                                    <a href="/news/{{ $hn->id }}">
-                                        <b>{{ $mn->name }}</b>
-                                    </a>
-                                </div>
-                                <span style="padding: 15px;">{!! $mn->summary !!}</span>
-                                <div class="break"></div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @endif
                         <!-- end item -->
                     </div>
                 </div>

@@ -82,6 +82,9 @@ class ProductAdminService
             $product->price_sale = $request->price_sale;
             $product->description = $request->description;
             $product->file = $request->file;
+            $product->file_num2 = $request->file_num2;
+            $product->file_num3 = $request->file_num3;
+            $product->file_num4 = $request->file_num4;
             $product->amount = $request->amount;
             $product->content = $request->content;
             $product->weight = $request->weight;
