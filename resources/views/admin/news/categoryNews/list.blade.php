@@ -19,7 +19,7 @@
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $categoryNew->name }}</td>
                     <td><input data-id="{{ $categoryNew->id }}" class="toggle-class-categoryNew" type="checkbox" data-onstyle="success"
-                            data-offstyle="danger" data-toggle="toggle" data-on="Có" data-off="Không"
+                            data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
                             {{ $categoryNew->active ? 'checked' : '' }}></td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($categoryNew->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($categoryNew->updated_at) !!}</td>

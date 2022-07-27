@@ -50,7 +50,8 @@
             <div class="form-group">
                 <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="1" type="radio" id="active" name="active" checked="">
+                    <input class="custom-control-input" value="1" type="radio" id="active" name="active"
+                        checked="">
                     <label for="active" class="custom-control-label">Có</label>
                 </div>
                 <div class="custom-control custom-radio">
@@ -69,7 +70,7 @@
             </a>
         </div>
 
-        
+
     </form>
 @endsection
 
@@ -77,6 +78,13 @@
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor 4
         // instance, using default configuration.
-        CKEDITOR.replace('content');
+        // CKEDITOR.replace('content');
+        var editor = CKEDITOR.replace('content', {
+            filebrowserBrowseUrl: '/browser/browse.php',
+            filebrowserImageBrowseUrl: '/browser/browse.php?type=Images',
+            filebrowserUploadUrl: '/uploader/upload.php',
+            filebrowserImageUploadUrl: '/uploader/upload.php?type=Images'
+        });
+        CKFinder.setupCKEditor(editor);
     </script>
 @endsection

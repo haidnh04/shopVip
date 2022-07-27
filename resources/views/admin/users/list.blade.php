@@ -44,8 +44,8 @@
                             data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="QTV" data-off="NV"
                             {{ $user->role ? 'checked' : '' }}></td>
                     <td><input data-id="{{ $user->id }}" class="toggle-class-user" type="checkbox"
-                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Có"
-                            data-off="Không" {{ $user->status ? 'checked' : '' }}></td>
+                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
+                            {{ $user->status ? 'checked' : '' }}></td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($user->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($user->updated_at) !!}</td>
                     <td>
@@ -170,7 +170,7 @@
         </div>
 
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
-            Xuất Excel
+            Khung xuất Excel
         </button>
 
         <!-- Modal dạng popup export file -->
@@ -210,11 +210,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                            <button type="submit" class="btn btn-primary">Tạo slide</button>
-                            {{-- <a href="{{ route('exportUser') }}" class="btn btn-primary"
-                                style="width:140px; text-align:center; height: 38px">
-                                <span><i class="fas fa-solid fa-download"></i></span> <span>Xuất Excel</span>
-                            </a> --}}
+                            <button type="submit" class="btn btn-primary">Xuất Excel</button>
                         </div>
                     </form>
                 </div>
@@ -225,12 +221,14 @@
 
     <script>
         const linkedPicker1Element = document.getElementById('linkedPickers1');
-        const linked1 = new tempusDominus.TempusDominus(linkedPicker1Element);
+        const linked1 = new tempusDominus.TempusDominus(linkedPicker1Element, {
+        });
         linked1.dates.formatInput = function(date) {
             {
                 return moment(date).format('YYYY-MM-DD')
             }
         }
+        linked1.dates.clear
         const linked2 = new tempusDominus.TempusDominus(document.getElementById('linkedPickers2'), {
             useCurrent: true
         });
@@ -239,7 +237,7 @@
                 return moment(date).format('YYYY-MM-DD')
             }
         }
-
+        linked2.dates.clear
         //using event listeners
         linkedPicker1Element.addEventListener(tempusDominus.Namespace.events.change, (e) => {
             linked2.updateOptions({
@@ -257,9 +255,5 @@
                 }
             });
         });
-
-
-        // event listener can be unsubscribed to:
-        // subscription.unsubscribe();
     </script>
 @endsection

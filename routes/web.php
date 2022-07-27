@@ -188,6 +188,8 @@ Route::prefix('admin')->group(function () {
         //Trang quản lý khách hàng đã mua hàng gì
         Route::get('customers', [\App\Http\Controllers\Admin\CartController::class, 'index'])->name('listCustomer');
         Route::get('customers/view/{customer}', [\App\Http\Controllers\Admin\CartController::class, 'show']);
+        Route::post('export', [\App\Http\Controllers\Admin\CartController::class, 'exportCart'])->name('exportCart');
+
 
         //Notification
         Route::get('notification', [SendNotificationController::class, 'create'])->name('createNotification');

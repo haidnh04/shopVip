@@ -27,7 +27,7 @@
                     <td>{!! \App\Helpers\Helper::priceAdminProduct($product->price) !!}</td>
                     <td>{!! \App\Helpers\Helper::salePriceAdminProduct($product->price_sale) !!}</td>
                     <td><input data-id="{{ $product->id }}" class="toggle-class-product" type="checkbox" data-onstyle="success"
-                        data-offstyle="danger" data-toggle="toggle" data-on="Có" data-off="Không"
+                        data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
                         {{ $product->active ? 'checked' : '' }}></td>
                     {{-- <td>{!! \App\Helpers\Helper::active($product->active) !!}</td> --}}
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($product->created_at) !!}</td>

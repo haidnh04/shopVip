@@ -49,7 +49,7 @@
                     <td>{{ $slider->sort_by }}</td>
                     {{-- <td>{!! \App\Helpers\Helper::active($slider->active) !!}</td> --}}
                     <td><input data-id="{{ $slider->id }}" class="toggle-class-slider" type="checkbox" data-onstyle="success"
-                            data-offstyle="danger" data-toggle="toggle" data-on="Có" data-off="Không"
+                            data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
                             {{ $slider->active ? 'checked' : '' }}></td>
 
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($slider->created_at) !!}</td>

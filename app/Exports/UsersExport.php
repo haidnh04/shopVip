@@ -40,9 +40,19 @@ class UsersExport implements FromCollection, WithHeadings, WithColumnWidths, Wit
     //Lấy ra các cột trong db để thêm vào cột trong excel của bảng users
     public function collection()
     {
-        Log::debug($this->start);
-        $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
-            ->orderByDesc('created_at')->whereBetween('created_at', [$this->start, $this->end])->get();
+        if (!empty($this->start) && !empty($this->end)) {
+            $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
+                ->orderByDesc('created_at')->whereBetween('created_at', [$this->start, $this->end])->get();
+        } elseif (empty($this->start) && empty($this->end)) {
+            $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
+                ->orderByDesc('created_at')->get();
+        } elseif (!empty($this->start) && empty($this->end)) {
+            $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
+                ->orderByDesc('created_at')->where('created_at', '>=', $this->start)->get();
+        } elseif (empty($this->start) && !empty($this->end)) {
+            $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
+                ->orderByDesc('created_at')->where('created_at', '<=', $this->end)->get();
+        }
 
         return $users;
     }

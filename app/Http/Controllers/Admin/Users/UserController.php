@@ -26,7 +26,6 @@ class UserController extends Controller
 
     public function exportUsers(Request $request) 
     {
-        Log::debug($request->all());
         return Excel::download(new UsersExport($request->start, $request->end), 'DSThanhVien.xlsx');
     }
 

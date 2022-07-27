@@ -21,7 +21,7 @@
                     <td>{{ $kindNew->name }}</td>
                     <td>{{ $kindNew->categoryNews->name }}</td>
                     <td><input data-id="{{ $kindNew->id }}" class="toggle-class-kindNew" type="checkbox" data-onstyle="success"
-                            data-offstyle="danger" data-toggle="toggle" data-on="Có" data-off="Không"
+                            data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
                             {{ $kindNew->active ? 'checked' : '' }}></td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($kindNew->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($kindNew->updated_at) !!}</td>
