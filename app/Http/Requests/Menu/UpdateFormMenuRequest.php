@@ -24,11 +24,12 @@ class UpdateFormMenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255|unique:menus,name',
+            'name' => 'required|max:255',
             'parent_id' => 'required',
             'description' => 'nullable|max:5000',
             'content' => 'nullable|max:10000',
             'active' => 'required',
+            'img' => 'nullable|max:255'
         ];
     }
 
@@ -36,7 +37,7 @@ class UpdateFormMenuRequest extends FormRequest
     {
         return [
             'name.required' => 'Bạn cần nhập tên danh mục',
-            'name.unique' => 'Tên danh mục đã tồn tại',
+            // 'name.unique' => 'Tên danh mục đã tồn tại',
             'name.max' => 'Tên danh mục có thể nhập tối đa 255 ký tự',
 
             'parent_id.required' => 'Bạn cần chọn danh mục cha',
@@ -46,6 +47,8 @@ class UpdateFormMenuRequest extends FormRequest
             'content.max' => 'Nội dung danh mục có thể nhập tối đa 10000 ký tự',
 
             'active.required' => 'Bạn cần chọn danh mục hoạt động hay không',
+
+            'img.max' => 'Ảnh danh mục có thể nhập tối đa 255 ký tự',
         ];
     }
 }

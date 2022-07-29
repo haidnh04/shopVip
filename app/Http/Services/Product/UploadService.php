@@ -90,5 +90,25 @@ class UploadService
                 return false;
             }
         }
+        if ($request->hasFile('img')) {
+            try {
+                //Lấy tên file ra
+                $name = $request->file('img')->getClientOriginalName();
+
+                //lấy đường dẫn \uploads\2022\02\21
+                $pathFull = 'uploads/' . date("Y/m/d");
+
+                //Lưu vào file folder có tên chuẩn (storage\app\public\uploads\2022\02\21\ten_file)
+                $path = $request->file('img')->storeAs(
+                    'public/' . $pathFull,
+                    $name
+                );
+
+                //Trả về đường dẫn chuẩn của ảnh (storage\app\public\uploads\2022\02\21\ten_file)
+                return '/storage/' . $pathFull . '/' . $name;
+            } catch (\Exception $err) {
+                return false;
+            }
+        }
     }
 }

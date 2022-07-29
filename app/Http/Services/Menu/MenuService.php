@@ -6,6 +6,7 @@ use App\Models\Menu;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class MenuService
 {
@@ -30,6 +31,7 @@ class MenuService
 
     public function create($request)
     {
+        Log::debug($request->all());
         try {
             Menu::create([
                 'name' => $request->name,
@@ -37,6 +39,7 @@ class MenuService
                 'description' => $request->description,
                 'content' => $request->content,
                 'active' => $request->active,
+                'img' => $request->img,
                 //'slug' => Str::slug($request->name, '-'),
             ]);
             Session::flash('success', 'Thêm danh mục thành công');
@@ -55,6 +58,7 @@ class MenuService
             $menu->description = $request->description;
             $menu->content = $request->content;
             $menu->active = $request->active;
+            $menu->img = $request->img;
             $menu->save();
 
             // return true;

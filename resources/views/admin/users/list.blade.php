@@ -35,8 +35,23 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $lastid = null;
+                $rowclass = 'grey';
+            @endphp
             @foreach ($users as $key => $user)
-                <tr>
+                @php
+                    //if userid changed from last iteration, store new userid and change color
+                    if ($lastid !== $user->id) {
+                        $lastid = $user->id;
+                        if ($rowclass == '#f2f7f2') {
+                            $rowclass = 'white';
+                        } else {
+                            $rowclass = '#f2f7f2';
+                        }
+                    }
+                @endphp
+                <tr style="background-color: {{ $rowclass }}">
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
@@ -221,8 +236,7 @@
 
     <script>
         const linkedPicker1Element = document.getElementById('linkedPickers1');
-        const linked1 = new tempusDominus.TempusDominus(linkedPicker1Element, {
-        });
+        const linked1 = new tempusDominus.TempusDominus(linkedPicker1Element, {});
         linked1.dates.formatInput = function(date) {
             {
                 return moment(date).format('YYYY-MM-DD')

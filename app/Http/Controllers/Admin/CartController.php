@@ -36,7 +36,6 @@ class CartController extends Controller
 
     public function exportCart(Request $request)
     {
-        Log::debug($request->all());
         return Excel::download(new CartsExport($request->start, $request->end), 'DSDonHang.xlsx');
     }
 }

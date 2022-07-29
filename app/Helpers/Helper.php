@@ -16,14 +16,28 @@ class Helper
     public static function menu($menus, $parent_id = 0, $char = '')
     {
         $html = '';
-
+        // $lastid = null;
+        // $rowclass = 'grey';
         foreach ($menus as $key => $menu) {
+            // if ($lastid !== $menu->parent_id && $lastid !== $menu->id) {
+            //     $lastid = $menu->parent_id;
+            //     if ($rowclass == '#f2f7f2') {
+            //         $rowclass = 'white';
+            //     } else {
+            //         $rowclass = '#f2f7f2';
+            //     }
+            // }
             if ($menu->parent_id == $parent_id) {
                 //Đoạn lấy danh mục cha
                 $html .= '
                 <tr>
                     <td>' . $menu->id . ' </td>
                     <td>' . $char . $menu->name . '  </td>
+                    <td>
+                        <a href="' . $menu->img . '" target="_blank">
+                            <img src="' . $menu->img . '" height="50px">
+                        </a>
+                    </td>
                     <td>' . self::active($menu->active) . ' </td>
                     <td>' . \App\Helpers\Helper::convertDatetimeUpdate($menu->created_at) . ' </td>
                     <td>' . \App\Helpers\Helper::convertDatetimeUpdate($menu->updated_at) . ' </td>
@@ -173,7 +187,7 @@ class Helper
     {
         if ($priceSale != 0) return number_format($priceSale);
         if ($price != 0)  return number_format($price);
-        return '<a href="/lien-he.html" style="text-deconration:none; color:red;">Liên Hệ</a>';
+        return '<a href="/contact" style="text-deconration:none; color:red;">Liên Hệ</a>';
     }
 
     public static function priceAdminProduct($price = 0)

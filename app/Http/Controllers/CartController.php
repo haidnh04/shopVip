@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use  App\Http\Services\Product\CartService;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\Customer\CreateFormCustomerRequest;
 
 class CartController extends Controller
 {
@@ -48,7 +49,7 @@ class CartController extends Controller
         return redirect('carts');
     }
 
-    public function addCart(Request $request)
+    public function addCart(CreateFormCustomerRequest $request)
     {
         $this->cartService->addCart($request);
         return redirect()->back();

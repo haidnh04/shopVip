@@ -36,8 +36,23 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $lastid = null;
+                $rowclass = 'grey';
+            @endphp
             @foreach ($sliders as $key => $slider)
-                <tr>
+                @php
+                    //if userid changed from last iteration, store new userid and change color
+                    if ($lastid !== $slider->id) {
+                        $lastid = $slider->id;
+                        if ($rowclass == '#f2f7f2') {
+                            $rowclass = 'white';
+                        } else {
+                            $rowclass = '#f2f7f2';
+                        }
+                    }
+                @endphp
+                <tr style="background-color: {{ $rowclass }}">
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $slider->name }}</td>
                     <td>{{ $slider->url }}</td>
@@ -48,8 +63,8 @@
                     </td>
                     <td>{{ $slider->sort_by }}</td>
                     {{-- <td>{!! \App\Helpers\Helper::active($slider->active) !!}</td> --}}
-                    <td><input data-id="{{ $slider->id }}" class="toggle-class-slider" type="checkbox" data-onstyle="success"
-                            data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
+                    <td><input data-id="{{ $slider->id }}" class="toggle-class-slider" type="checkbox"
+                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
                             {{ $slider->active ? 'checked' : '' }}></td>
 
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($slider->created_at) !!}</td>

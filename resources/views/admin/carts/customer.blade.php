@@ -31,8 +31,23 @@ https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/css/tempus-domin
             </tr>
         </thead>
         <tbody>
+            @php
+                $lastid = null;
+                $rowclass = 'grey';
+            @endphp
             @foreach ($customers as $key => $customer)
-                <tr>
+                @php
+                    //if userid changed from last iteration, store new userid and change color
+                    if ($lastid !== $customer->id) {
+                        $lastid = $customer->id;
+                        if ($rowclass == '#f2f7f2') {
+                            $rowclass = 'white';
+                        } else {
+                            $rowclass = '#f2f7f2';
+                        }
+                    }
+                @endphp
+                <tr style="background-color: {{ $rowclass }}">
                     <td>{{ $customer->id }}</td>
                     <td>{{ $customer->name }}</td>
                     <td>{{ $customer->phone }}</td>
@@ -42,12 +57,12 @@ https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/css/tempus-domin
                         <a class="btn btn-primary btn-sm" href="/admin/customers/view/{{ $customer->id }}">
                             <i class="fas fa-eye"></i>
                         </a>
-                        @if (!empty($customer->id))
+                        {{-- @if (!empty($customer->id))
                             <a href="#" class="btn btn-danger btn-sm"
                                 onclick="removeRow({{ $customer->id }}, '/admin/customers/destroy')">
                                 <i class="fas fa-trash"></i>
                             </a>
-                        @endif
+                        @endif --}}
                     </td>
                 </tr>
             @endforeach
@@ -109,8 +124,7 @@ https://cdn.jsdelivr.net/gh/Eonasdan/tempus-dominus@master/dist/css/tempus-domin
 
     <script>
         const linkedPicker1Element = document.getElementById('linkedPickers1');
-        const linked1 = new tempusDominus.TempusDominus(linkedPicker1Element, {
-        });
+        const linked1 = new tempusDominus.TempusDominus(linkedPicker1Element, {});
         linked1.dates.formatInput = function(date) {
             {
                 return moment(date).format('YYYY-MM-DD')

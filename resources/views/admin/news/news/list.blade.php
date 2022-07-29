@@ -21,8 +21,23 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $lastid = null;
+                $rowclass = 'grey';
+            @endphp
             @foreach ($news as $key => $new)
-                <tr>
+                @php
+                    //if userid changed from last iteration, store new userid and change color
+                    if ($lastid !== $new->id) {
+                        $lastid = $new->id;
+                        if ($rowclass == '#f2f7f2') {
+                            $rowclass = 'white';
+                        } else {
+                            $rowclass = '#f2f7f2';
+                        }
+                    }
+                @endphp
+                <tr style="background-color: {{ $rowclass }}">
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $new->name }}</td>
                     <td>

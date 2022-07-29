@@ -29,6 +29,7 @@ class CreateFormMenuRequest extends FormRequest
             'description' => 'nullable|max:5000',
             'content' => 'nullable|max:10000',
             'active' => 'required',
+            'img' => 'nullable|max:255'
         ];
     }
 
@@ -43,6 +44,7 @@ class CreateFormMenuRequest extends FormRequest
             'description.max' => 'Tóm tắt danh mục có thể nhập tối đa 5000 ký tự',
             'content.max' => 'Nội dung danh mục có thể nhập tối đa 10000 ký tự',
             'active.required' => 'Bạn cần chọn danh mục hoạt động hay không',
+            'img.max' => 'Ảnh danh mục có thể nhập tối đa 255 ký tự',
         ];
     }
 }

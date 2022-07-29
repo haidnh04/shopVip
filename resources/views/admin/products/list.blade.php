@@ -18,8 +18,23 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $lastid = null;
+                $rowclass = 'grey';
+            @endphp
             @foreach ($products as $key => $product)
-                <tr>
+                @php
+                    //if userid changed from last iteration, store new userid and change color
+                    if ($lastid !== $product->id) {
+                        $lastid = $product->id;
+                        if ($rowclass == '#f2f7f2') {
+                            $rowclass = 'white';
+                        } else {
+                            $rowclass = '#f2f7f2';
+                        }
+                    }
+                @endphp
+                <tr style="background-color: {{ $rowclass }}">
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $product->name }}</td>
                     <td>{{ $product->menu->name }}</td>
@@ -27,8 +42,8 @@
                     <td>{!! \App\Helpers\Helper::priceAdminProduct($product->price) !!}</td>
                     <td>{!! \App\Helpers\Helper::salePriceAdminProduct($product->price_sale) !!}</td>
                     <td><input data-id="{{ $product->id }}" class="toggle-class-product" type="checkbox" data-onstyle="success"
-                        data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
-                        {{ $product->active ? 'checked' : '' }}></td>
+                            data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
+                            {{ $product->active ? 'checked' : '' }}></td>
                     {{-- <td>{!! \App\Helpers\Helper::active($product->active) !!}</td> --}}
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($product->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($product->updated_at) !!}</td>
@@ -216,31 +231,31 @@
                                 <label for="menu">Ảnh bổ xung 1 <span style="color: red">*</span></label>
                                 <input type="file" name="file_num2" class="form-control" id="upload1">
                                 <div id="image_show1">
-                
+
                                 </div>
                                 <input type="hidden" name="file_num2" id="file_num2">
                                 @error('file_num2')
                                     <span style="color:red;">{{ $message }}</span>
                                 @enderror
                             </div>
-                
+
                             <div class="form-group">
                                 <label for="menu">Ảnh bổ xung 2 <span style="color: red">*</span></label>
                                 <input type="file" name="file_num3" class="form-control" id="upload2">
                                 <div id="image_show2">
-                
+
                                 </div>
                                 <input type="hidden" name="file_num3" id="file_num3">
                                 @error('file_num3')
                                     <span style="color:red;">{{ $message }}</span>
                                 @enderror
                             </div>
-                
+
                             <div class="form-group">
                                 <label for="menu">Ảnh bổ xung 3 <span style="color: red">*</span></label>
                                 <input type="file" name="file_num4" class="form-control" id="upload3">
                                 <div id="image_show3">
-                
+
                                 </div>
                                 <input type="hidden" name="file_num4" id="file_num4">
                                 @error('file_num4')

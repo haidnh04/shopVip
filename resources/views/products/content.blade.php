@@ -55,9 +55,8 @@
                             <div class="slick3 gallery-lb slick-initialized slick-slider slick-dotted">
                                 <div class="slick-list draggable">
                                     <div class="slick-track" style="opacity: 1; width: 1539px;">
-                                        <div class="item-slick3 slick-slide"
-                                            data-thumb="images/product-detail-01.jpg" data-slick-index="0"
-                                            aria-hidden="false"
+                                        <div class="item-slick3 slick-slide" data-thumb="images/product-detail-01.jpg"
+                                            data-slick-index="0" aria-hidden="false"
                                             style="width: 513px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
                                             tabindex="0" role="tabpanel" id="slick-slide10"
                                             aria-describedby="slick-slide-control10">
@@ -73,9 +72,8 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="item-slick3 slick-slide"
-                                            data-thumb="images/product-detail-01.jpg" data-slick-index="1"
-                                            aria-hidden="false"
+                                        <div class="item-slick3 slick-slide" data-thumb="images/product-detail-01.jpg"
+                                            data-slick-index="1" aria-hidden="false"
                                             style="width: 513px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
                                             tabindex="0" role="tabpanel" id="slick-slide10"
                                             aria-describedby="slick-slide-control10">
@@ -88,9 +86,8 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="item-slick3 slick-slide"
-                                            data-thumb="images/product-detail-01.jpg" data-slick-index="2"
-                                            aria-hidden="false"
+                                        <div class="item-slick3 slick-slide" data-thumb="images/product-detail-01.jpg"
+                                            data-slick-index="2" aria-hidden="false"
                                             style="width: 513px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;"
                                             tabindex="0" role="tabpanel" id="slick-slide10"
                                             aria-describedby="slick-slide-control10">
@@ -163,7 +160,7 @@
                             <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-204 flex-w flex-m respon6-next">
                                     <form action="/add-cart" method="post">
-                                        @if ($product->price !== null)
+                                        @if ($product->amount > 0 && ($product->price > 0 || $product->price_sale > 0))
                                             <div class="wrap-num-product flex-w m-r-20 m-tb-10">
                                                 <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
                                                     <i class="fs-16 zmdi zmdi-minus"></i>
@@ -171,12 +168,14 @@
 
                                                 <input class="mtext-104 cl3 txt-center num-product" type="number"
                                                     name="num_product" value="1">
-
-                                                <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                    <i class="fs-16 zmdi zmdi-plus"></i>
-                                                </div>
+                                                {{-- @if ($product->amount < {{Request::input('name')}})
+                                                    abc
+                                                @else --}}
+                                                    <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                        <i class="fs-16 zmdi zmdi-plus"></i>
+                                                    </div>
+                                                {{-- @endif --}}
                                             </div>
-
 
                                             <button type="submit"
                                                 class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 ">

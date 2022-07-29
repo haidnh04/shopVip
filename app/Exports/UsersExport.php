@@ -53,7 +53,6 @@ class UsersExport implements FromCollection, WithHeadings, WithColumnWidths, Wit
             $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
                 ->orderByDesc('created_at')->where('created_at', '<=', $this->end)->get();
         }
-
         return $users;
     }
 
@@ -88,7 +87,7 @@ class UsersExport implements FromCollection, WithHeadings, WithColumnWidths, Wit
             'D' => 10,
             'E' => 10,
             'F' => 30,
-            'G' => 30
+            'G' => 20
         ];
     }
 

@@ -14,14 +14,20 @@
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="active-menu"><a href="/">Trang Chủ</a> </li>
-                        <li class="active-menu"><a href="/about">Giới thiệu</a> </li>
+                        <li>
+                            <a href="/">Trang Chủ</a>
+                        </li>
+                        <li>
+                            <a href="/about">Giới thiệu</a>
+                        </li>
                         <li>Sản phẩm
                             <ul class="sub-menu">
                                 {!! $menusHtml !!}
                             </ul>
                         </li>
-                        <li> <a href="/categorynews">Tin tức</a></li>
+                        <li>
+                            <a href="/categorynews">Tin tức</a>
+                        </li>
                         <li>
                             <a href="/contact">Liên Hệ</a>
                         </li>
@@ -75,7 +81,7 @@
     <!-- Menu Mobile -->
     <div class="menu-mobile">
         <ul class="main-menu-m">
-            <li class="active-menu"><a href="/">Trang Chủ</a> </li>
+            <li><a href="/" style="text-decoration:none; color:inherit;">Trang Chủ</a> </li>
 
 
             {!! $menusHtml !!}

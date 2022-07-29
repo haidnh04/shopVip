@@ -22,7 +22,7 @@ use PhpOffice\PhpSpreadsheet\Style\Color;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class CartsExport implements FromCollection, WithHeadings, WithColumnWidths
+class CartsExport implements FromCollection, WithHeadings, WithColumnWidths, WithColumnFormatting
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -67,8 +67,15 @@ class CartsExport implements FromCollection, WithHeadings, WithColumnWidths
                 ->where('customers.created_at', '<=', $this->end)
                 ->get();
         }
-
         return $customer;
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+            // 'I' => '[$€-2] * #,##0.00;-[$€-2] * #,##0.00_-;_-[$€-2] * "-"??_-;_-@_-',
+            'I' => '### 000',
+        ];
     }
 
     //Thêm hàng tiêu đề cho bảng
@@ -87,9 +94,9 @@ class CartsExport implements FromCollection, WithHeadings, WithColumnWidths
             'D' => 30,
             'E' => 30,
             'F' => 30,
-            'G' => 30,
-            'H' => 30,
-            'I' => 30
+            'G' => 26,
+            'H' => 26,
+            'I' => 15
         ];
     }
 

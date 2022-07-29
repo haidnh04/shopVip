@@ -48,6 +48,18 @@
             </div>
 
             <div class="form-group">
+                <label for="menu">Ảnh danh mục <span style="color: red">*</span></label>
+                <input type="file" name="img" class="form-control" id="upload10">
+                <div id="image_show10">
+
+                </div>
+                <input type="hidden" name="img" id="img">
+                @error('img')
+                    <span style="color:red;">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <div class="form-group">
                 <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" value="1" type="radio" id="active" name="active"
