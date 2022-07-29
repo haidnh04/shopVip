@@ -19,7 +19,7 @@
 {{-- vue css --}}
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-<!-- Toastr -->
+<!-- Toastr (popup)-->
 <link rel="stylesheet" href="/template/admin/plugins/toastr/toastr.min.css">
 <style>
     /* toastr */
@@ -55,7 +55,7 @@
     }
 </style>
 
-{{-- Bootstrap toogle --}}
+{{-- Bootstrap toogle (button slider)--}}
 <link rel="stylesheet" href="/template/admin/plugins/bootstrap-toggle/bootstrap-toggle.min.css">
 <style>
     /*!
@@ -194,5 +194,8 @@
         background-color: #fff
     }
 </style>
+
+{{-- datetimepicker --}}
+<link rel="stylesheet" href="/template/admin/plugins/dateTimePicker/tempus-dominus.css">
 
 @yield('head')
