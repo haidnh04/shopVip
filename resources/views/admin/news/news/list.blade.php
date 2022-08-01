@@ -204,8 +204,14 @@
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor 4
         // instance, using default configuration.
-        CKEDITOR.replace('content');
-        CKEDITOR.replace('sumary');
+        var editor = CKEDITOR.replace('content', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
+        var editor = CKEDITOR.replace('sumary', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
     </script>
 @endsection
 

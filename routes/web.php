@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\NewUsersController;
 use App\Http\Controllers\SendNotificationController;
+use App\Http\Controllers\Admin\CKEditorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -232,3 +233,7 @@ Route::get('kindnews/{id}', [NewUsersController::class, 'kindNews']);
 Route::get('news/{id}', [NewUsersController::class, 'news']);
 //phần post đăng nhận xét trong chi tiết tin tức
 Route::post('comment/{id}', [NewUsersController::class, 'postComment']);
+
+Route::post('upload/form', [CKEditorController::class, 'form'])->name('upload.form');
+Route::post('ck/upload', [CKEditorController::class, 'ckUpload'])->name('ck.upload');
+

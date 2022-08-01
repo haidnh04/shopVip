@@ -68,7 +68,8 @@
             <div class="form-group">
                 <label>Nổi bật <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="1" type="radio" id="active1" name="hightlight" checked="">
+                    <input class="custom-control-input" value="1" type="radio" id="active1" name="hightlight"
+                        checked="">
                     <label for="active1" class="custom-control-label">Có</label>
                 </div>
                 <div class="custom-control custom-radio">
@@ -80,7 +81,8 @@
             <div class="form-group">
                 <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="1" type="radio" id="active" name="active" checked="">
+                    <input class="custom-control-input" value="1" type="radio" id="active" name="active"
+                        checked="">
                     <label for="active" class="custom-control-label">Có</label>
                 </div>
                 <div class="custom-control custom-radio">
@@ -105,8 +107,14 @@
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor 4
         // instance, using default configuration.
-        CKEDITOR.replace('content');
-        CKEDITOR.replace('sumary');
+        var editor = CKEDITOR.replace('content', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
+        var editor = CKEDITOR.replace('sumary', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
     </script>
 @endsection
 

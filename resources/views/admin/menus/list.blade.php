@@ -1,5 +1,7 @@
 @extends('admin.users.main')
-
+@section('head')
+    <script src="/ckeditor/ckeditor.js"></script>
+@endsection
 @section('content')
     <table class="table table-bordered">
         <thead>
@@ -117,10 +119,17 @@
             </div>
         </div>
     </div>
+@endsection
 
-    {{-- <div class="card-footer">
-        <a href="{{ route('createMenu') }}" class="btn btn-primary" style="width:140px; text-align:center; height: 40px">
-            <p>Thêm danh mục</p>
-        </a>
-    </div> --}}
+@section('footer')
+    <script>
+        var editor = CKEDITOR.replace('content', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
+        var editor = CKEDITOR.replace('description', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
+    </script>
 @endsection

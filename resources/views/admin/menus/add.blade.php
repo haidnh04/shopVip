@@ -88,15 +88,13 @@
 
 @section('footer')
     <script>
-        // Replace the <textarea id="editor1"> with a CKEditor 4
-        // instance, using default configuration.
-        // CKEDITOR.replace('content');
         var editor = CKEDITOR.replace('content', {
-            filebrowserBrowseUrl: '/browser/browse.php',
-            filebrowserImageBrowseUrl: '/browser/browse.php?type=Images',
-            filebrowserUploadUrl: '/uploader/upload.php',
-            filebrowserImageUploadUrl: '/uploader/upload.php?type=Images'
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
         });
-        CKFinder.setupCKEditor(editor);
+        var editor = CKEDITOR.replace('description', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
     </script>
 @endsection

@@ -180,7 +180,8 @@
             <div class="form-group">
                 <label>Kích hoạt <span style="color: red">*</span></label>
                 <div class="custom-control custom-radio">
-                    <input class="custom-control-input" value="1" type="radio" id="active" name="active" checked="">
+                    <input class="custom-control-input" value="1" type="radio" id="active" name="active"
+                        checked="">
                     <label for="active" class="custom-control-label">Có</label>
                 </div>
                 <div class="custom-control custom-radio">
@@ -193,7 +194,8 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Tạo sản phẩm</button>
-            <a href="{{ route('listProduct') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+            <a href="{{ route('listProduct') }}" class="btn btn-primary"
+                style="width:80px; text-align:center; height: 37px">
                 <p>Quay lại</p>
             </a>
         </div>
@@ -202,8 +204,13 @@
 
 @section('footer')
     <script>
-        // Replace the <textarea id="editor1"> with a CKEditor 4
-        // instance, using default configuration.
-        CKEDITOR.replace('content');
+        var editor = CKEDITOR.replace('content', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
+        var editor = CKEDITOR.replace('description', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
     </script>
 @endsection

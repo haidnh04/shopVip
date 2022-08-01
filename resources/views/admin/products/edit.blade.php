@@ -1,7 +1,6 @@
 @extends('admin.users.main')
 @section('head')
-    <script src="/ckeditor/ckeditor.js">
-    </script>
+    <script src="/ckeditor/ckeditor.js"></script>
 @endsection
 @section('content')
     <form action="" method="POST">
@@ -26,8 +25,7 @@
                             {{-- Lấy ra các danh mục cha --}}
                             {{-- <option value="0">Danh mục cha</option> --}}
                             @foreach ($menus as $menu)
-                                <option value="{{ $menu->id }}"
-                                    {{ $product->menu_id == $menu->id ? 'selected' : '' }}>
+                                <option value="{{ $menu->id }}" {{ $product->menu_id == $menu->id ? 'selected' : '' }}>
                                     {{ $menu->name }}</option>
                             @endforeach
                         </select>
@@ -205,7 +203,8 @@
 
         <div class="card-footer">
             <button type="submit" class="btn btn-primary">Cập nhật sản phẩm</button>
-            <a href="{{ route('listProduct') }}" class="btn btn-primary" style="width:80px; text-align:center; height: 37px">
+            <a href="{{ route('listProduct') }}" class="btn btn-primary"
+                style="width:80px; text-align:center; height: 37px">
                 <p>Quay lại</p>
             </a>
         </div>
@@ -214,8 +213,13 @@
 
 @section('footer')
     <script>
-        // Replace the <textarea id="editor1"> with a CKEditor 4
-        // instance, using default configuration.
-        CKEDITOR.replace('content');
+        var editor = CKEDITOR.replace('content', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
+        var editor = CKEDITOR.replace('description', {
+            filebrowserUploadUrl: '{{ route('ck.upload', ['_token' => csrf_token()]) }}',
+            filebrowserUploadMethod: 'form',
+        });
     </script>
 @endsection
