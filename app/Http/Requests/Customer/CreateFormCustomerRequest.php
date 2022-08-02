@@ -25,7 +25,7 @@ class CreateFormCustomerRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'phone' => 'required|max:255|numeric',
+            'phone' => 'required|numeric',
             'address' => 'required|max:255',
             'email' => 'nullable|email|max:255',
             'content' => 'nullable|max:1000',
@@ -39,7 +39,7 @@ class CreateFormCustomerRequest extends FormRequest
             'name.max' => 'Họ và tên bạn có thể nhập tối đa 255 ký tự',
 
             'phone.required' => 'Bạn cần nhập số điện thoại',
-            'phone.max' => 'Số điện thoại có thể nhập tối đa 255 ký tự',
+            // 'phone.max' => 'Số điện thoại có thể nhập tối đa 255 ký tự',
             'phone.numeric' => 'Số điện thoại phải là dạng số',
 
             'address.required' => 'Bạn cần nhập địa chỉ',

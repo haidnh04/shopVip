@@ -79,6 +79,7 @@ class CartService
         DB::beginTransaction();
 
         $carts = Session::get('carts');
+        Log::debug($carts);
 
         if (is_null($carts))
             return false;
@@ -95,6 +96,20 @@ class CartService
 
         DB::commit();
         Session::flash('success', 'Đặt Hàng Thành Công');
+
+        $productId = array_keys($carts);
+        $amountSell = array_values($carts);
+        $productSell = Product::select('amount')
+            ->where('active', 1)
+            ->whereIn('id', $productId)
+            ->first();
+        $newAmount = $productSell->amount - $amountSell[0];
+
+        DB::table('products')
+            ->where('id', $productId)
+            ->update([
+                'amount' => $newAmount
+            ]);
 
         #Queue
         SendMail::dispatch($request->input('email'))->delay(now()->addSeconds(2));

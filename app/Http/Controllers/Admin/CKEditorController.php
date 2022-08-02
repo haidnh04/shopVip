@@ -21,7 +21,7 @@ class CKEditorController extends Controller
         $file->move($dir, $new_name);
         $url = asset('storage/files/' . $new_name);
         $CkeditorFuncNum = $request->input('CKEditorFuncNum');
-        $status = "<script>window.parent.CKEDITOR.tools.callFunction('$CkeditorFuncNum', '$url', 'File upload successs')</script>";
+        $status = "<script>window.parent.CKEDITOR.tools.callFunction('$CkeditorFuncNum', '$url', 'Tải ảnh lên thành công')</script>";
         echo $status;
     }
 }
