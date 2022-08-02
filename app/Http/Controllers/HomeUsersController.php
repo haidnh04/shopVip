@@ -30,6 +30,7 @@ class HomeUsersController extends Controller
     //     return view('slider', compact('sliders', 'title'));
     // }
 
+    //lấy menu và product trang chủ
     public function index()
     {
         $title = 'Shop nước hoa ABC';
@@ -38,6 +39,7 @@ class HomeUsersController extends Controller
         return view('home', compact('title', 'menus', 'products'));
     }
 
+    //tìm kiếm sản phẩm theo tên
     public function postSearch(Request $request)
     {
         $tuKhoa = $request->search;

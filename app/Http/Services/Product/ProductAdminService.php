@@ -14,9 +14,10 @@ class ProductAdminService
     }
 
     //Gọi ra tất cả dữ liệu cảu bảng products và lấy thêm danh mục của bảng menus
-    public function getAll()
+    public function getAll($request)
     {
-        return Product::with('menu')->orderByDesc('id')->paginate(15);
+        $tuKhoa = $request->search;
+        return Product::with('menu')->orWhere('name', 'like', '%' . $tuKhoa . '%')->orderByDesc('id')->paginate(15);
     }
 
     //Check giá 

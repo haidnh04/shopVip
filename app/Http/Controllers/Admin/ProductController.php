@@ -25,10 +25,10 @@ class ProductController extends Controller
         $this->productAdminService = $productAdminService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $title = "Danh sách sản phẩm";
-        $products = $this->productAdminService->getAll();
+        $products = $this->productAdminService->getAll($request);
         $menus = $this->productAdminService->getMenu();
         return view('admin.products.list', compact('title', 'products', 'menus'));
     }

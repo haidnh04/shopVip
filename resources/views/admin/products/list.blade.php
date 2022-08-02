@@ -76,9 +76,12 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
             Thêm mới sản phẩm
         </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
+            Tìm kiếm
+        </button>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal thêm sản phẩm -->
     <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
@@ -284,6 +287,32 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                         <button type="submit" class="btn btn-primary">Tạo sản phẩm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal tìm kiếm sản phẩm --}}
+    <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <form method="get" action="{{ route('listProduct') }}" role="search">
+                    {{-- @csrf --}}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Tìm kiếm sản phẩm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" class="form-control" name="search" placeholder="Tìm kiếm sản phẩm...">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </div>
                 </form>
             </div>
