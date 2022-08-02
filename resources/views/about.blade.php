@@ -1,6 +1,7 @@
 @extends('main')
 
 @section('content')
+    {{-- @php $menusHtml = \App\Helpers\Helper::menus($menus); @endphp --}}
     {{-- <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +22,8 @@
         <div class="row main-left">
             <div class="col-md-3 ">
                 <ul class="list-group" id="menu">
-                    <li href="#" class="list-group-item MenuUsers active">
+                    {{-- {!! $menusHtml !!} --}}
+                    {{-- <li href="#" class="list-group-item MenuUsers active">
                         Menu
                     </li>
 
@@ -105,7 +107,7 @@
                     </li>
                     <li href="#" class="list-group-item MenuUsers">
                         <a href="#">Level 1</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
 

@@ -33,7 +33,7 @@ class HomeUsersController extends Controller
     public function index()
     {
         $title = 'Shop nước hoa ABC';
-        $menus = $this->menu->show();
+        $menus = $this->menu->showHome();
         $products = $this->product->get();
         return view('home', compact('title', 'menus', 'products'));
     }

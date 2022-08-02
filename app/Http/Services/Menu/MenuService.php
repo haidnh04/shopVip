@@ -15,13 +15,13 @@ class MenuService
         return Menu::where('parent_id', 0)->where('active', 1)->get();
     }
 
-    public function show()
+    public function showHome()
     {
-        return Menu::select('id', 'name')
+        return Menu::select('id', 'name', 'img')
             ->orderByDesc('id')
             ->where('parent_id', 0)
             ->where('active', 1)
-            ->get();
+            ->take(5)->get();
     }
 
     public function getAll()
