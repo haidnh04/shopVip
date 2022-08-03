@@ -79,6 +79,9 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
             Tìm kiếm
         </button>
+        <button type="submit" type="button" class="btn btn-success" onclick="window.location.href='/admin/products/list'">
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
     </div>
 
     <!-- Modal thêm sản phẩm -->
@@ -159,8 +162,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="menu">Giá giảm</label>
-                                        <input type="number" name="price_sale" class="form-control" placeholder="Giá giảm"
-                                            value="{{ old('price_sale') }}">
+                                        <input type="number" name="price_sale" class="form-control"
+                                            placeholder="Giá giảm" value="{{ old('price_sale') }}">
                                         @error('price_sale')
                                             <span style="color:red;">{{ $message }}</span>
                                         @enderror
@@ -307,8 +310,38 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control" name="search" placeholder="Tìm kiếm sản phẩm...">
-
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Tên sản phẩm: </label>
+                                    <input type="text" class="form-control" name="name"
+                                        placeholder="Tên sản phẩm...">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Số lượng: </label>
+                                    <input type="number" class="form-control" name="amount"
+                                        placeholder="Số lượng sản phẩm...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Giá: </label>
+                                    <input type="number" class="form-control" name="price"
+                                        placeholder="Giá sản phẩm...">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Giá giảm: </label>
+                                    <input type="number" class="form-control" name="price_sale"
+                                        placeholder="Giá giảm sản phẩm...">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>

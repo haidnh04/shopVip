@@ -5,6 +5,7 @@ namespace App\Http\Services\Product;
 use App\Models\Menu;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
 
 class ProductAdminService
 {
@@ -14,10 +15,49 @@ class ProductAdminService
     }
 
     //Gọi ra tất cả dữ liệu cảu bảng products và lấy thêm danh mục của bảng menus
-    public function getAll($request)
+    public function getAll()
     {
-        $tuKhoa = $request->search;
-        return Product::with('menu')->orWhere('name', 'like', '%' . $tuKhoa . '%')->orderByDesc('id')->paginate(15);
+        return Product::with('menu')
+            ->orderByDesc('id')
+            ->paginate(15);
+    }
+
+    //Gọi ra tất cả dữ liệu cảu bảng products và lấy thêm danh mục của bảng menus tích hợp tính anwng search
+    public function getAllWithSearch($request)
+    {
+        $name = $request->name;
+        $amount = $request->amount;
+        $price = $request->price;
+        $price_sale = $request->price_sale;
+        if ($request->has('price')) {
+            return Product::with('menu')
+                ->where('name', 'like', '%' . $name . '%')
+                ->where('amount', 'like', '%' . $amount . '%')
+                ->where('price', 'like', '%' . $price . '%')
+                ->orderByDesc('id')
+                ->paginate(15);
+        } elseif ($request->has('price_sale')) {
+            return Product::with('menu')
+                ->where('name', 'like', '%' . $name . '%')
+                ->where('amount', 'like', '%' . $amount . '%')
+                ->where('price_sale', 'like', '%' . $price_sale . '%')
+                ->orderByDesc('id')
+                ->paginate(15);
+        } elseif (empty($request->has('price')) && empty($request->has('price_sale'))) {
+            return Product::with('menu')
+                ->where('name', 'like', '%' . $name . '%')
+                ->where('amount', 'like', '%' . $amount . '%')
+                ->orderByDesc('id')
+                ->paginate(15);
+        } elseif (!empty($request->has('price')) && !empty($request->has('price_sale'))) {
+            return Product::with('menu')
+                ->where('name', 'like', '%' . $name . '%')
+                ->where('amount', 'like', '%' . $amount . '%')
+                ->where('price', 'like', '%' . $price . '%')
+                ->where('price_sale', 'like', '%' . $price_sale . '%')
+                ->orderByDesc('id')
+                ->paginate(15);
+        }
     }
 
     //Check giá 

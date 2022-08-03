@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $title = "Danh sách sản phẩm";
-        $products = $this->productAdminService->getAll($request);
+        $products = $this->productAdminService->getAllWithSearch($request);
         $menus = $this->productAdminService->getMenu();
         return view('admin.products.list', compact('title', 'products', 'menus'));
     }
