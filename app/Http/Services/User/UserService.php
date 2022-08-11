@@ -8,9 +8,12 @@ use Illuminate\Support\Facades\Hash;
 class UserService
 {
 
-    public function getAll()
+    public function getAll($request)
     {
-        return User::orderByDesc('id')->paginate(10);
+        return User::where('name', 'like', '%' . $request->name . '%')
+        ->where('email', 'like', '%' . $request->email . '%')
+        ->orderByDesc('id')
+        ->paginate(10);
     }
 
     public function store($request)
@@ -18,7 +21,7 @@ class UserService
         try {
             User::create([
                 'name' => $request->name,
-                'email' => $request->email,
+                'email' => strtolower($request->email),
                 'password' => Hash::make($request->password),
                 'role' => $request->role,
                 'status' => $request->status,
@@ -41,7 +44,7 @@ class UserService
     {
         try {
             $user->name = $request->name;
-            $user->email = $request->email;
+            $user->email = strtolower($request->email);
             $user->password = Hash::make($request->password);
             $user->role = $request->role;
             $user->status = $request->status;

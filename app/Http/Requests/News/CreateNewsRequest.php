@@ -27,7 +27,7 @@ class CreateNewsRequest extends FormRequest
             'name' => 'required|max:255',
             'summary' => 'nullable|max:5000',
             'content' => 'nullable|max:30000',
-            'file' => 'nullable',
+            'file' => 'required',
             'hightlight' => 'nullable',
             'view' => 'nullable',
             'kind_id' => 'required',
@@ -40,6 +40,8 @@ class CreateNewsRequest extends FormRequest
         return [
             'name.required' => 'Tiêu đề tin tức bắt buộc phải nhập',
             'name.max' => 'Tiêu đề tin tức phải dưới :max ký tự',
+
+            'file.required' => 'Ảnh đại diện tin tức bắt buộc phải có',
 
             'summary.max' => 'Tóm tắt tin tức phải dưới :max ký tự',
 

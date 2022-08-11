@@ -18,10 +18,16 @@ class KindNewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $cateNew = $request->categoryNew;
         $categoryNews = NewCategory::get();
-        $kindNews = KindNew::with('categoryNews')->orderByDesc('id')->paginate(10);
+        $kindNews = KindNew::with('categoryNews')
+            ->where('id', 'like', '%' . $request->kindNew . '%')
+            ->whereHas('categoryNews', function ($q) use ($cateNew) {
+                $q->where('id', 'like', '%' . $cateNew . '%');
+            })
+            ->orderByDesc('id')->paginate(10);
         $title = 'Danh sách loại tin tức';
         return view('admin.news.kindNews.list', compact('title', 'kindNews', 'categoryNews'));
     }

@@ -29,11 +29,11 @@ class UserController extends Controller
         return Excel::download(new UsersExport($request->start, $request->end), 'DSThanhVien.xlsx');
     }
 
-    public function index()
+    public function index(Request $request)
 
     {
         $title = 'Danh sách thành viên';
-        $users = $this->userService->getAll();
+        $users = $this->userService->getAll($request);
         return view('admin.users.list', compact('title', 'users'));
     }
 

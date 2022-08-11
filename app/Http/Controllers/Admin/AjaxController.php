@@ -15,4 +15,11 @@ class AjaxController extends Controller
             echo "<option value='" . $lt->id . "'>" . $lt->name . "</option>";
         }
     }
+    public function getKindSearch($categoryNew)
+    {
+        $loaitin = KindNew::where('category_id', $categoryNew)->get();
+        foreach ($loaitin as $key => $lt) {
+            echo "<option value='" . $lt->id . "'>" . $lt->name . "</option>";
+        }
+    }
 }

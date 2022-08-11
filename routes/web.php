@@ -166,6 +166,7 @@ Route::prefix('admin')->group(function () {
         //Trang ajax loại tin tức
         Route::prefix('ajax')->group(function () {
             Route::get('kind/{category_id}', [AjaxController::class, 'getKind'])->name('getKind');
+            Route::get('kindSearch/{categoryNew}', [AjaxController::class, 'getKindSearch'])->name('getKindSearch');
         });
 
         //Trang Slider

@@ -23,10 +23,23 @@ class NewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $news = NNew::orderByDesc('id')->paginate(10);
         $title = 'Danh sách tin tức';
+        $cateNew = $request->categoryNew;
+        $kindNew = $request->kindNew;
+        $news = NNew::orderByDesc('id')
+            ->where('name', 'like', '%' . $request->nnews . '%')
+            // ->where(DB::raw('lower(name)'), 'LIKE', '%' . strtolower($request->nnews) . '%')
+            ->whereHas('categoryNews', function ($q) use ($cateNew) {
+                $q->where('id', 'like', '%' . $cateNew . '%');
+            })
+            ->whereHas('kindNews', function ($q) use ($kindNew) {
+                $q->where('id', 'like', '%' . $kindNew . '%');
+            })
+            ->paginate(10);
+        Log::debug(strtolower($news));
+
         $categoryNews = NewCategory::get();
         $kindNews = KindNew::get();
         return view('admin.news.news.list', compact('title', 'news', 'categoryNews', 'kindNews'));
@@ -99,7 +112,7 @@ class NewController extends Controller
      */
     public function show(NNew $new)
     {
-        $title = 'Thêm thể loại tin tức';
+        $title = 'Cập nhật tin tức';
         $news = NNew::firstOrFail();
         $categoryNews = NewCategory::where('active', 1)->get();
         $kindNews = KindNew::where('active', 1)->get();

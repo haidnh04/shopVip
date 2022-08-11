@@ -3,6 +3,17 @@
     <script src="/ckeditor/ckeditor.js"></script>
 @endsection
 @section('content')
+    <div class="card-header">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Thêm mới sản phẩm
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
+            Tìm kiếm
+        </button>
+        <button type="submit" type="button" class="btn btn-success" onclick="window.location.href='/admin/products/list'">
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+    </div>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -43,8 +54,8 @@
                     <td>{!! \App\Helpers\Helper::amountProduct($product->amount) !!}</td>
                     <td>{!! \App\Helpers\Helper::priceAdminProduct($product->price) !!}</td>
                     <td>{!! \App\Helpers\Helper::salePriceAdminProduct($product->price_sale) !!}</td>
-                    <td><input data-id="{{ $product->id }}" class="toggle-class-product" type="checkbox" data-onstyle="success"
-                            data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
+                    <td><input data-id="{{ $product->id }}" class="toggle-class-product" type="checkbox"
+                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
                             {{ $product->active ? 'checked' : '' }}></td>
                     {{-- <td>{!! \App\Helpers\Helper::active($product->active) !!}</td> --}}
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($product->created_at) !!}</td>
@@ -326,7 +337,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Giá: </label>
@@ -341,7 +352,7 @@
                                         placeholder="Giá giảm sản phẩm...">
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>

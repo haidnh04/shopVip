@@ -1,6 +1,17 @@
 @extends('admin.users.main')
 
 @section('content')
+    <div class="card-header">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+            Thêm mới loại tin
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
+            Tìm kiếm
+        </button>
+        <button type="submit" type="button" class="btn btn-success" onclick="window.location.href='/admin/kindnew/list'">
+            <i class="fa-solid fa-arrows-rotate"></i>
+        </button>
+    </div>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -35,8 +46,8 @@
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $kindNew->name }}</td>
                     <td>{{ $kindNew->categoryNews->name }}</td>
-                    <td><input data-id="{{ $kindNew->id }}" class="toggle-class-kindNew" type="checkbox" data-onstyle="success"
-                            data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
+                    <td><input data-id="{{ $kindNew->id }}" class="toggle-class-kindNew" type="checkbox"
+                            data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Bật" data-off="Tắt"
                             {{ $kindNew->active ? 'checked' : '' }}></td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($kindNew->created_at) !!}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($kindNew->updated_at) !!}</td>
@@ -65,6 +76,12 @@
     <div class="card-footer">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
             Thêm mới loại tin
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong1">
+            Tìm kiếm
+        </button>
+        <button type="submit" type="button" class="btn btn-success" onclick="window.location.href='/admin/kindnew/list'">
+            <i class="fa-solid fa-arrows-rotate"></i>
         </button>
     </div>
 
@@ -134,9 +151,71 @@
         </div>
     </div>
 
-    {{-- <div class="card-footer">
-        <a href="{{ route('createKindNew') }}" class="btn btn-primary" style="width:140px; text-align:center; height: 40px">
-            <p>Thêm loại tin</p>
-        </a>
-    </div> --}}
+    {{-- Modal tìm kiếm loại tin tức --}}
+    <div class="modal fade" id="exampleModalLong1" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <form method="get" action="{{ route('listKindNew') }}" role="search">
+                    {{-- @csrf --}}
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Tìm kiếm loại tin tức</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Thể loại <span style="color: red">*</span></label>
+                                    <select name="categoryNew" class="form-control" id="categoryNewId">
+                                        {{-- Lấy ra các danh mục cha --}}
+                                        {{-- <option value="0">Danh mục cha</option> --}}
+                                        @foreach ($categoryNews as $categoryNew)
+                                            <option value="{{ $categoryNew->id }}">{{ $categoryNew->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Loại tin <span style="color: red">*</span></label>
+                                    <select name="kindNew" class="form-control" id="kindNewID">
+                                        {{-- Lấy ra các danh mục cha --}}
+                                        {{-- <option value="0">Danh mục cha</option> --}}
+                                        {{-- @foreach ($kindNews as $kindNew)
+                                            <option value="{{ $kindNew->id }}">{{ $kindNew->name }}</option>
+                                        @endforeach --}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('script11')
+    <script>
+        $(document).ready(function() {
+            var categoryNew1 = $('#categoryNewId').val();
+            $.get("/admin/ajax/kindSearch/" + categoryNew1, function(data) {
+                $("#kindNewID").html(data);
+            });
+
+            $("#categoryNewId").change(function() {
+                var categoryNew1 = $(this).val();
+                $.get("/admin/ajax/kindSearch/" + categoryNew1, function(data) {
+                    $("#kindNewID").html(data);
+                });
+            });
+        });
+    </script>
 @endsection
