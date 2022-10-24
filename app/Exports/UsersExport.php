@@ -42,16 +42,16 @@ class UsersExport implements FromCollection, WithHeadings, WithColumnWidths, Wit
     {
         if (!empty($this->start) && !empty($this->end)) {
             $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
-                ->orderByDesc('created_at')->whereBetween('created_at', [$this->start, $this->end])->get();
+                ->orderByDesc('created_at')->whereBetween('created_at', [$this->start, $this->end])->where('role','<',2)->get();
         } elseif (empty($this->start) && empty($this->end)) {
             $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
-                ->orderByDesc('created_at')->get();
+                ->orderByDesc('created_at')->where('role','<',2)->get();
         } elseif (!empty($this->start) && empty($this->end)) {
             $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
-                ->orderByDesc('created_at')->where('created_at', '>=', $this->start)->get();
+                ->orderByDesc('created_at')->where('created_at', '>=', $this->start)->where('role','<',2)->get();
         } elseif (empty($this->start) && !empty($this->end)) {
             $users = User::select('id', 'name', 'email', 'role', 'status', 'created_at', 'updated_at')
-                ->orderByDesc('created_at')->where('created_at', '<=', $this->end)->get();
+                ->orderByDesc('created_at')->where('created_at', '<=', $this->end)->where('role','<',2)->get();
         }
         return $users;
     }

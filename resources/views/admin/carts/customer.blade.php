@@ -9,6 +9,7 @@
                 <th>Số Điện Thoại</th>
                 <th>Email</th>
                 <th>Ngày Đặt hàng</th>
+                <th>Trạng thái xử lý</th>
                 <th style="width: 100px">&nbsp;</th>
             </tr>
         </thead>
@@ -35,6 +36,7 @@
                     <td>{{ $customer->phone }}</td>
                     <td>{{ $customer->email }}</td>
                     <td>{!! \App\Helpers\Helper::convertDatetimeUpdate($customer->created_at) !!}</td>
+                    <td>{{ $customer->statusSell }}</td>
                     <td>
                         <a class="btn btn-primary btn-sm" href="/admin/customers/view/{{ $customer->id }}">
                             <i class="fas fa-eye"></i>

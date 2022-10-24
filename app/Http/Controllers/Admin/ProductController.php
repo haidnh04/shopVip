@@ -9,6 +9,8 @@ use App\Http\Requests\Product\UpdateProductRequest;
 use App\Http\Services\Product\ProductAdminService;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+
 
 class ProductController extends Controller
 {
@@ -77,7 +79,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         $title = 'Cập nhật sản phẩm: ' . $product->name;
-        $products = $this->productAdminService->getAll();
+        $products = $this->productAdminService->getProduct();
         $menus = $this->productAdminService->getMenu();
         return view('admin.products.edit', compact('title', 'product', 'products', 'menus'));
     }

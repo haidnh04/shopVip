@@ -17,7 +17,7 @@ class checkPermission
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->role == 1 && $request->user()->status == 1) {
+        if (($request->user()->role == 1 && $request->user()->status == 1) || ($request->user()->role == 2 && $request->user()->status == 1)) {
             return $next($request);
         } else {
             Auth::logout();

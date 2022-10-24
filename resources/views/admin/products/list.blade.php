@@ -19,7 +19,7 @@
             <tr>
                 <th>STT: </th>
                 <th>Tên sản phẩm: </th>
-                <th>Danh mục: </th>
+                {{-- <th>Danh mục: </th> --}}
                 <th>Số lượng: </th>
                 <th>Giá: </th>
                 <th>Giá giảm: </th>
@@ -50,7 +50,7 @@
                 <tr style="background-color: {{ $rowclass }}">
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $product->name }}</td>
-                    <td>{{ $product->menu->name }}</td>
+                    {{-- <td>{{ $product->menus->name }}</td> --}}
                     <td>{!! \App\Helpers\Helper::amountProduct($product->amount) !!}</td>
                     <td>{!! \App\Helpers\Helper::priceAdminProduct($product->price) !!}</td>
                     <td>{!! \App\Helpers\Helper::salePriceAdminProduct($product->price_sale) !!}</td>

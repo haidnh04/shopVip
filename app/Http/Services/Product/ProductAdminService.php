@@ -15,7 +15,7 @@ class ProductAdminService
     }
 
     //Gọi ra tất cả dữ liệu cảu bảng products và lấy thêm danh mục của bảng menus
-    public function getAll()
+    public function getProduct()
     {
         return Product::with('menu')
             ->orderByDesc('id')

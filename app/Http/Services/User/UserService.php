@@ -12,6 +12,7 @@ class UserService
     {
         return User::where('name', 'like', '%' . $request->name . '%')
         ->where('email', 'like', '%' . $request->email . '%')
+        ->where('role', '<', 2)
         ->orderByDesc('id')
         ->paginate(10);
     }

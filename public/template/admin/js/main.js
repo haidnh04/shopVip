@@ -171,7 +171,7 @@ $(function() {
                 
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                console.log('fail rồi')
+                
             }
         });
     })

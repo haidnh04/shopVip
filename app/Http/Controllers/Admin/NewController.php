@@ -38,10 +38,10 @@ class NewController extends Controller
                 $q->where('id', 'like', '%' . $kindNew . '%');
             })
             ->paginate(10);
-        Log::debug(strtolower($news));
-
         $categoryNews = NewCategory::get();
         $kindNews = KindNew::get();
+        Log::debug('kindNews');
+        Log::debug(print_r($kindNews, true));
         return view('admin.news.news.list', compact('title', 'news', 'categoryNews', 'kindNews'));
     }
 
