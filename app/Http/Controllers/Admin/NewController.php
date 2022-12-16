@@ -40,8 +40,6 @@ class NewController extends Controller
             ->paginate(10);
         $categoryNews = NewCategory::get();
         $kindNews = KindNew::get();
-        Log::debug('kindNews');
-        Log::debug(print_r($kindNews, true));
         return view('admin.news.news.list', compact('title', 'news', 'categoryNews', 'kindNews'));
     }
 
